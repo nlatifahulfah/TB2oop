@@ -1,3 +1,4 @@
+
 interface WaterAnimal {
 	String[] getTipeHabitat();
 }

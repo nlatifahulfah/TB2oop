@@ -1,3 +1,4 @@
+
 public class Cat extends Animal implements LandHabitat, Karnivora{
 	private final String TIPEANIMAL = "cat";
 	private final char SIMBOL = 'c';

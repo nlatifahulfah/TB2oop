@@ -1,18 +1,19 @@
-public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Karnivora {
-	private final String TIPEANIMAL = "flyingfish";
-	private final char SIMBOL = 'y';
+
+public class Snake extends Animal implements LandHabitat, Karnivora{
+	private final String TIPEANIMAL = "snake";
+	private final char SIMBOL = 's';
 	private int bobot;
-	private String tipeHabitat[] = {"water", "air"};
-	private String musuh[] = {"frog", "rhino"};
+	private String tipeHabitat[] = {"land"};
+	private String musuh[] = {"goat", "chicken"};
 	/**
 	* Constructor
 	* 
-	* @param x posisi x awal Flyingfish
-	* @param y posisi y awal Flyingfish
+	* @param x posisi x awal Snake
+	* @param y posisi y awal Snake
 	*/
-	public Flyingfish(int x, int y) {
+	public Snake(int x, int y) {
 		super(x, y);
-		bobot = 10;
+		bobot = 15;
 	}
 	/**
 	* Menambahkan bobot satu satuan
@@ -22,7 +23,7 @@ public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Kar
 		bobot++;
 	}
 	/**
-	* Mendapatkan nilai bobot dari Flyingfish
+	* Mendapatkan nilai bobot dari Snake
 	*
 	* @return bobot saat ini
 	*/
@@ -31,7 +32,7 @@ public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Kar
 		return bobot;
 	}
 	/**
-	* Mendapatkan simbol dari Flyingfish
+	* Mendapatkan simbol dari Snake
 	*
 	* @return simbol
 	*/
@@ -39,9 +40,9 @@ public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Kar
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan musuh ke i dari Flyingfish
+	* Mendapatkan musuh ke i dari Snake
 	* Musuh merupakan Animal lain yang tidak bisa tinggal
-	* dalam satu kandang dengan Flyingfish
+	* dalam satu kandang dengan Snake
 	*
 	* @return musuh[i]
 	*/
@@ -57,17 +58,17 @@ public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Kar
 		return TIPEANIMAL;
 	}
 	/**
-	* Mendapatkan reaksi Flyingfish saat berinteraksi
+	* Mendapatkan reaksi Snake saat berinteraksi
 	* dengan pengunjung
 	*
-	* @return "flysplash"
+	* @return "ssstt"
 	*/
 	@Override
 	public String interact() {
-		return "flysplash"; 
+		return "ssstt"; 
 	}
 	/**
-	* Mendapatkan simbol dari Flyingfish
+	* Mendapatkan simbol dari Snake
 	* 
 	* @return simbol
 	*/
@@ -76,12 +77,12 @@ public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Kar
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan tipeHabitat dari Flyingfish
+	* Mendapatkan tipeHabitat dari Snake
 	* 
 	* @return tipeHabitat
 	*/
 	@Override
 	public String[] getTipeHabitat() {
-		return tipeHabitat; 
+		return tipeHabitat; //blm fix
 	}
 }

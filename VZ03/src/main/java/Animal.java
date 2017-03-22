@@ -1,3 +1,4 @@
+
 abstract class Animal implements Renderable {
 	private int x;
 	private int y;
