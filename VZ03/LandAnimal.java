@@ -1,0 +1,3 @@
+interface LandAnimal {
+	String[] getTipeHabitat();
+}
