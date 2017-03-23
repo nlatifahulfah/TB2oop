@@ -18,39 +18,39 @@ all:
 
 Animal: Renderable
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Animal.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Animal.java
 
 FlyingAnimal: 
 	$(MKBIN)
-	$(JAVAC) $(CP) $(MAINSRC)FlyingAnimal.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)FlyingAnimal.java 
 
 Flyingfish: Animal FlyingAnimal WaterAnimal
 	$(MKBIN)
-	$(JAVAC) $(CP) $(MAINSRC)Flyingfish.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Flyingfish.java
 
 Karnivora: 
 	$(MKBIN)
-	$(JAVAC) $(CP) $(MAINSRC)Karnivora.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Karnivora.java
 
 Renderable: 
 	$(MKBIN)
-	$(JAVAC) $(CP) $(MAINSRC)Renderable.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Renderable.java
 
 WaterAnimal: 
 	$(MKBIN)
-	$(JAVAC) $(CP) $(MAINSRC)WaterAnimal.java -d bin
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)WaterAnimal.java
 
 test:
-	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)*
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)/FlyingfishTest.java 
 
 clean:
 	rm -rf $(TARGET)
 
 run:
-	$(JVM) $(CP) $(TARGET) $(MAIN)
+	$(JVM) $(CP) $(MAIN)
 
 run_test: 
-	$(JVM) $(CP) $(TARGET) $(MAINTEST)
+	$(JVM) $(CP) $(MAINTEST)
 
 testFF:
 	$(JVM) $(CP) org.junit.runner.JUnitCore FlyingfishTest
