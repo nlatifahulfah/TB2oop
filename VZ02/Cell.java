@@ -1,19 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// File : Cell.java
+// PIC : Letivany Aldina - 13514067
 
-/**
- *
- * @author user
- */
 public class Cell {
     private int x;
     private int y;
     private String tipeCell;
     
-    public Cell(int x,int y,char s){
+    public void Cell(int x, int y, char s) {
         this.x = x;
         this.y = y;
         
@@ -43,23 +36,23 @@ public class Cell {
         }
     }
     
-    public getTipe(char s){
+    public String getTipe(char s){
         return tipeCell;
     }
     
-    public getX(){
+    public int getX(){
         return x;
     }
     
-    public getY(){
+    public int getY(){
         return y;
     }
     
-    public setX(int x){
+    public void setX(int x){
         this.x = x;
     }
     
-    public setY(int y){
+    public void setY(int y){
         this.y = y;
     }
     
