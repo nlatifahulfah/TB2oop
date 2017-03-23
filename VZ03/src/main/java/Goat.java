@@ -1,16 +1,17 @@
-public class Dog extends Animal implements LandHabitat, Karnivora{
-	private final String TIPEANIMAL = "dog";
-	private final char SIMBOL = 'd';
+
+public class Goat extends Animal implements LandHabitat, Herbivora{
+	private final String TIPEANIMAL = "goat";
+	private final char SIMBOL = 'g';
 	private int bobot;
 	private String tipeHabitat[] = {"land"};
-	private String musuh[] = {"cat", "lion"};
+	private String musuh[] = {"snake", "chicken"};
 	/**
 	* Constructor
 	* 
-	* @param x posisi x awal Dog
-	* @param y posisi y awal Dog
+	* @param x posisi x awal Goat
+	* @param y posisi y awal Goat
 	*/
-	public Dog(int x, int y) {
+	public Goat(int x, int y) {
 		super(x, y);
 		bobot = 10;
 	}
@@ -22,7 +23,7 @@ public class Dog extends Animal implements LandHabitat, Karnivora{
 		bobot++;
 	}
 	/**
-	* Mendapatkan nilai bobot dari Dog
+	* Mendapatkan nilai bobot dari Goat
 	*
 	* @return bobot saat ini
 	*/
@@ -31,7 +32,7 @@ public class Dog extends Animal implements LandHabitat, Karnivora{
 		return bobot;
 	}
 	/**
-	* Mendapatkan simbol dari Dog
+	* Mendapatkan simbol dari Goat
 	*
 	* @return simbol
 	*/
@@ -39,9 +40,9 @@ public class Dog extends Animal implements LandHabitat, Karnivora{
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan musuh ke i dari Dog
+	* Mendapatkan musuh ke i dari Goat
 	* Musuh merupakan Animal lain yang tidak bisa tinggal
-	* dalam satu kandang dengan Dog
+	* dalam satu kandang dengan Goat
 	*
 	* @return musuh[i]
 	*/
@@ -57,17 +58,17 @@ public class Dog extends Animal implements LandHabitat, Karnivora{
 		return TIPEANIMAL;
 	}
 	/**
-	* Mendapatkan reaksi Dog saat berinteraksi
+	* Mendapatkan reaksi Goat saat berinteraksi
 	* dengan pengunjung
 	*
-	* @return "barkbark"
+	* @return "embeee"
 	*/
 	@Override
 	public String interact() {
-		return "barkbark"; 
+		return "embeee"; 
 	}
 	/**
-	* Mendapatkan simbol dari Dog
+	* Mendapatkan simbol dari Goat
 	* 
 	* @return simbol
 	*/
@@ -76,7 +77,7 @@ public class Dog extends Animal implements LandHabitat, Karnivora{
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan tipeHabitat dari Dog
+	* Mendapatkan tipeHabitat dari Goat
 	* 
 	* @return tipeHabitat
 	*/

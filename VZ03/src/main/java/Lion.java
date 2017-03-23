@@ -1,18 +1,19 @@
-public class Snake extends Animal implements LandHabitat, Karnivora{
-	private final String TIPEANIMAL = "snake";
-	private final char SIMBOL = 's';
+
+public class Lion extends Animal implements LandHabitat, Karnivora{
+	private final String TIPEANIMAL = "lion";
+	private final char SIMBOL = 'l';
 	private int bobot;
 	private String tipeHabitat[] = {"land"};
-	private String musuh[] = {"goat", "chicken"};
+	private String musuh[] = {"cat", "dog"};
 	/**
 	* Constructor
 	* 
-	* @param x posisi x awal Snake
-	* @param y posisi y awal Snake
+	* @param x posisi x awal Lion
+	* @param y posisi y awal Lion
 	*/
-	public Snake(int x, int y) {
+	public Lion(int x, int y) {
 		super(x, y);
-		bobot = 15;
+		bobot = 20;
 	}
 	/**
 	* Menambahkan bobot satu satuan
@@ -22,7 +23,7 @@ public class Snake extends Animal implements LandHabitat, Karnivora{
 		bobot++;
 	}
 	/**
-	* Mendapatkan nilai bobot dari Snake
+	* Mendapatkan nilai bobot dari Lion
 	*
 	* @return bobot saat ini
 	*/
@@ -31,7 +32,7 @@ public class Snake extends Animal implements LandHabitat, Karnivora{
 		return bobot;
 	}
 	/**
-	* Mendapatkan simbol dari Snake
+	* Mendapatkan simbol dari Lion
 	*
 	* @return simbol
 	*/
@@ -39,9 +40,9 @@ public class Snake extends Animal implements LandHabitat, Karnivora{
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan musuh ke i dari Snake
+	* Mendapatkan musuh ke i dari Lion
 	* Musuh merupakan Animal lain yang tidak bisa tinggal
-	* dalam satu kandang dengan Snake
+	* dalam satu kandang dengan Lion
 	*
 	* @return musuh[i]
 	*/
@@ -57,17 +58,17 @@ public class Snake extends Animal implements LandHabitat, Karnivora{
 		return TIPEANIMAL;
 	}
 	/**
-	* Mendapatkan reaksi Snake saat berinteraksi
+	* Mendapatkan reaksi Lion saat berinteraksi
 	* dengan pengunjung
 	*
-	* @return "ssstt"
+	* @return "auuum"
 	*/
 	@Override
 	public String interact() {
-		return "ssstt"; 
+		return "auuum"; 
 	}
 	/**
-	* Mendapatkan simbol dari Snake
+	* Mendapatkan simbol dari Lion
 	* 
 	* @return simbol
 	*/
@@ -76,7 +77,7 @@ public class Snake extends Animal implements LandHabitat, Karnivora{
 		return SIMBOL;
 	}
 	/**
-	* Mendapatkan tipeHabitat dari Snake
+	* Mendapatkan tipeHabitat dari Lion
 	* 
 	* @return tipeHabitat
 	*/
