@@ -1,6 +1,10 @@
 // File : MatrixCell.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiasuti - 13514008
+ */
 public class MatrixCell {
 	private Cell matrix[][];
 	private int N_BRS;

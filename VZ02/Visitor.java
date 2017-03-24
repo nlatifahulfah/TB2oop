@@ -1,6 +1,10 @@
 // File : Visitor.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiasuti - 13514008
+ */
 public class Visitor {
 	private int x;
 	private int y;

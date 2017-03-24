@@ -1,3 +1,10 @@
+// File : Cage.java
+// PIC : Nur Latifah Ulfah - 13514015
+
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 public class Cage {
 	private char simbol; /**< simbol adalah karakter simbol dari Cage */
 	private String tipeHabitat; /**< tipeHabitat adalah tipe habitat tempat Cage didirikan */

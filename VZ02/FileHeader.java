@@ -6,6 +6,10 @@ import java.io.*;
 import java.util.*;
 import java.util.List;
 
+/**
+ *
+ * @author Denita Hanna Widiasuti - 13514008
+ */
 public class FileReader {
 	private FileInputStream file;  // File eksternal yang akan dibaca
 	private int nbrs; 	/**< nbrs adalah jumlah baris area Zoo, */

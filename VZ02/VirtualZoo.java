@@ -1,6 +1,10 @@
 // File	: VirtualZoo.java
 // PIC	: Hasna Nur Karimah - 13514106
 
+/**
+ *
+ * @author Hasna Nur Karimah - 13514106
+ */
 public class VirtualZoo {
 
 	private MatrixCell[] matriksCell;

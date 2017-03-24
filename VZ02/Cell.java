@@ -1,6 +1,10 @@
 // File : Cell.java
 // PIC : Letivany Aldina - 13514067
 
+/**
+ *
+ * @author Letivany Aldina - 13514067
+ */
 public class Cell {
     private int x;
     private int y;
