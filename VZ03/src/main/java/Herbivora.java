@@ -1,13 +1,7 @@
-#ifndef HERBIVORA_H
-#define HERBIVORA_H
+// File	: Herbivora.java
+// PIC	: Hasna Nur Karimah - 13514106
 
-/**
-* @class Herbivora
-* Herbivora merupakan tipe Animal pemakan tumbuhan
-*/
-class Herbivora{
-protected:
-	const string tipeMakanan="herbivora";
-};
-
-#endif
+interface Herbivora {
+	int getBobot();
+	void addBobot();
+}

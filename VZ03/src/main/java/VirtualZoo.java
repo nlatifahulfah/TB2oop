@@ -1,48 +1,52 @@
-public class VirtualZoo {
-	private MatrixCell* matriks_cell;
-		
-	private int n_entrance;
-	private Cell[] list_entrance;
-	private int n_exit;
-	private Cell[] list_exit;
+// File	: VirtualZoo.java
+// PIC	: Hasna Nur Karimah - 13514106
 
-	private int n_cage;
+public class VirtualZoo {
+
+	private MatrixCell[] matriksCell;
+		
+	private int nEntrance;
+	private Cell[] listEntrance;
+	private int nExit;
+	private Cell[] listExit;
+
+	private int nCage;
 	private Cage[] cages;
-	private View maps;	
+	private View[] maps;	
 
 	private Visitor person;
 
-	private int n_road; //termasuk entrance n exit
-	private Cell[] list_visited;
-	private int current_visited;
-	private int n_visited;
+	private int nRoad; //termasuk entrance n exit
+	private Cell[] listVisited;
+	private int currentVisited;
+	private int nVisited;
 	
-	public VirtualZoo(string input_file) {
-		FileReader data(input_file);
+	public VirtualZoo(string inputFile) {
+		FileReader data(inputFile);
 		
 		data.Read();	
 
 		// 1. Inisialisasi Virtual Zoo
-		matriks_cell = new MatrixCell(data.GetNBrs(), data.GetNKol());
-		// cout << matriks_cell->getNBRS() << " ";
-		// cout << matriks_cell->getNKOL() << endl;
+		matriksCell = new MatrixCell(data.getNBrs(), data.getNKol());
+		// cout << matriksCell.getNBrs() << " ";
+		// cout << matriksCell.getNKol() << endl;
 		
-		int max = (matriks_cell->getNBRS() + matriks_cell->getNKOL())*2;
-		list_entrance = new Cell*[max];
-		n_entrance = 0;
-		list_exit = new Cell*[max];
-		n_exit = 0;
+		int max = (matriksCell.getNBrs() + matriksCell.getNKol())*2;
+		listEntrance = new Cell[max];
+		nEntrance = 0;
+		listExit = new Cell[max];
+		nExit = 0;
 		n_road;
 		
 		char c;
-		for(int i=0; i<matriks_cell->getNBRS(); i++){
-			for(int j=0; j<matriks_cell->getNKOL(); j++){
-				c = data.GetMaps(i,j);
+		for(int i=0; i<matriksCell.getNBrs(); i++){
+			for(int j=0; j<matriksCell.getNKol(); j++){
+				c = data.getMaps(i,j);
 				//cari index jenis Cell
 				int k=0;
-				bool found = false;
-				while (k<data.GetNCellType() && !found) {
-					if (c == data.GetCellSimbol(k)) {
+				boolean found = false;
+				while (k<data.getNCellType() && !found) {
+					if (c == data.getCellSimbol(k)) {
 						found = true;
 					}else
 						k++;
@@ -50,250 +54,253 @@ public class VirtualZoo {
 
 
 				//inisialisasi
-				if (data.GetCellType(k)=="airhabitat"){
-					matriks_cell->setCell(new AirHabitat(i,j, c), i, j);
-				}else if (data.GetCellType(k)=="waterhabitat"){
-					matriks_cell->setCell(new WaterHabitat(i,j, c), i, j);
-				}else if (data.GetCellType(k)=="landhabitat"){
-					matriks_cell->setCell(new LandHabitat(i,j, c), i, j);
-				}else if (data.GetCellType(k)=="road"){
-					matriks_cell->setCell(new Road(i,j, c), i, j);
+				if (data.getCellType(k)=="airhabitat"){
+					matriksCell.setCell(new Cell(i,j,c), i, j);
+				}else if (data.getCellType(k)=="waterhabitat"){
+					matriksCell.setCell(new Cell(i,j,c), i, j);
+				}else if (data.getCellType(k)=="landhabitat"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+				}else if (data.getCellType(k)=="road"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+					nRoad++;
+				}else if(data.getCellType(k)=="park"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+				}else if(data.getCellType(k)=="restourant"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+				}else if(data.getCellType(k)=="entrance"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+					listEntrance[nEntrance] = new Cell(i,j, c);
+					nEntrance++;
 					n_road++;
-				}else if(data.GetCellType(k)=="park"){
-					matriks_cell->setCell(new Park(i,j, c), i, j);
-				}else if(data.GetCellType(k)=="restourant"){
-					matriks_cell->setCell(new Restourant(i,j, c), i, j);
-				}else if(data.GetCellType(k)=="entrance"){
-					matriks_cell->setCell(new Entrance(i,j, c), i, j);
-					list_entrance[n_entrance] = new Entrance(i,j, c);
-					n_entrance++;
-					n_road++;
-				}else if(data.GetCellType(k)=="exit"){
-					matriks_cell->setCell(new Exit(i,j, c), i, j);
-					list_exit[n_exit] = new Exit(i,j, c);
-					n_exit++;
-					n_road++;
+				}else if(data.getCellType(k)=="exit"){
+					matriksCell.setCell(new Cell(i,j, c), i, j);
+					listExit[nExit] = new Cell(i,j, c);
+					nExit++;
+					nRoad++;
 				}
 				
-				// cout << matriks_cell->getCell(i,j)->render();
+				// cout << matriksCell.getCell(i,j).render();
 			}
 			// cout <<endl;
 		}
 
 
 		// 2. Inisialisasi objek Cage
-		n_cage = data.GetNCage();
-		// cout << n_cage << endl;
-		cages = new Cage*[n_cage];
+		nCage = data.getNCage();
+		// cout << nCage << endl;
+		cages = new Cage[nCage];
 
 		int n = 0, m =0;
-		for(int i=0; i<n_cage; i++){
-			cages[i]= new Cage(data.GetCageSimbol(i), data.GetCageType(i));
-			// cout << cages[i]->render() <<" "<<cages[i]->getTipeHabitat()<<endl;
+		for(int i=0; i<nCage; i++){
+			cages[i]= new Cage(data.getCageSimbol(i), data.getCageType(i));
+			// cout << cages[i].render() <<" "<<cages[i].getTipeHabitat()<<endl;
 
 			int x,y;  
-			n = n + data.GetNCageArea(i);
+			n = n + data.getNCageArea(i);
 			for(int j=m; j<n; j++){
 				//posisi pada zoo
-				x = data.GetPosX(j);
-				y = data.GetPosY(j);
+				x = data.getPosX(j);
+				y = data.getPosY(j);
 				// cout << x <<" "<< y <<endl;
-				//cek apakah cell memiliki tipe yang sesuai
-				// cout<<matriks_cell->getCell(x,y)->getTipe() <<" ";
-				// cout<< cages[i]->getTipeHabitat()<<endl;
-				if(matriks_cell->getCell(x,y)->getTipe() == cages[i]->getTipeHabitat()){
-					cages[i]->addCagePosition(matriks_cell->getCell(x,y));
-					// cout << cages[i]->getCagePosition(cages[i]->getNArea()-1)->getX()<<" ";
-					// cout << cages[i]->getCagePosition(cages[i]->getNArea()-1)->getY()<<endl;
+				// cek apakah cell memiliki tipe yang sesuai
+				// cout<<matriksCell.getCell(x,y).getTipe() <<" ";
+				// cout<< cages[i].getTipeHabitat()<<endl;
+				if(matriksCell.getCell(x,y).getTipe() == cages[i].getTipeHabitat()){
+					cages[i].addCagePosition(matriksCell.getCell(x,y));
+					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getX()<<" ";
+					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getY()<<endl;
 				}
 			}
 			// cout << endl;
-			m = m + data.GetNCageArea(i);
+			m = m + data.getNCageArea(i);
 		}
 
-		//3. Inisialisasi objek2 binatang dan meletakkannya di Cage yang sesuai
-		int jumlah_animal;
-		for(int i=0; i< n_cage; i++){
+		//3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
+		int jumlahAnimal;
+		for(int i=0; i< nCage; i++){
 
-			// cout << "max animal:" <<cages[i]->getMaxAnimal() <<endl;
-			jumlah_animal = data.GetNAnimal(i);
-			if (jumlah_animal > cages[i]->getMaxAnimal()) {
-				jumlah_animal = cages[i]->getMaxAnimal();
+			// cout << "max animal:" <<cages[i].getMaxAnimal() <<endl;
+			jumlahAnimal = data.getNAnimal(i);
+			if (jumlahAnimal > cages[i].getMaxAnimal()) {
+				jumlahAnimal = cages[i].getMaxAnimal();
 			}
-			// cout << "n animal:" << jumlah_animal <<endl;
-			for(int j=0; j<jumlah_animal; j++){
-				// cout <<"yang udah ada:"<< cages[i]->getNAnimal() <<endl;
-				if (cages[i]->getTipeHabitat()=="land"){
+			// cout << "n animal:" << jumlahAnimal <<endl;
+			for(int j=0; j<jumlahAnimal; j++){
+				//~ cout <<"yang udah ada:"<< cages[i].getNAnimal() <<endl;
+				if (cages[i].getTipeHabitat()=="land"){
 					//random posisi awal, pastikan masih kosong 
 					//random dari listOfPosisiCage
 					int nr;
-					bool found = false;
-					Cell * pos;
+					boolean found = false;
+					Cell pos;
 					while (!found){
-						nr = rand() % cages[i]->getNArea();
-						pos = cages[i]->getCagePosition(nr);
+						nr = rand() % cages[i].getNArea();
+						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
-						found = cages[i]->isPositionEmpty(pos);
+						found = cages[i].isPositionEmpty(pos);
 					}
 					
-					int x = pos->getX();
-					int y = pos->getY();
+					int x = pos.getX();
+					int y = pos.getY();
 					// cout <<x<<" land "<<y<<endl;
 					//ciptakan hewan
 					nr = rand() % 12 + 1;
 					switch(nr){
-						case 1: cages[i]->addAnimal(new Cat(x,y));break;
-						case 2: cages[i]->addAnimal(new Dog(x,y));break;
-						case 3: cages[i]->addAnimal(new Lion(x,y));break;
-						case 4: cages[i]->addAnimal(new Snake(x,y));break;
-						case 5: cages[i]->addAnimal(new Goat(x,y));break;
-						case 6: cages[i]->addAnimal(new Chicken(x,y));break;
-						case 7: cages[i]->addAnimal(new Elephant(x,y));break;
-						case 8: cages[i]->addAnimal(new Cow(x,y));break;
-						case 9: cages[i]->addAnimal(new Hedgehog(x,y));break;
-						case 10: cages[i]->addAnimal(new Rhino(x,y));break;
-						case 11: cages[i]->addAnimal(new Frog(x,y));break;
-						case 12: cages[i]->addAnimal(new Beetle(x,y));break;
+						case 1: cages[i].addAnimal(new Animal(x,y,"cat"));break;
+						case 2: cages[i].addAnimal(new Animal(x,y,"dog"));break;
+						case 3: cages[i].addAnimal(new Animal(x,y,"lion"));break;
+						case 4: cages[i].addAnimal(new Animal(x,y,"snake"));break;
+						case 5: cages[i].addAnimal(new Animal(x,y,"goat"));break;
+						case 6: cages[i].addAnimal(new Animal(x,y,"chicken"));break;
+						case 7: cages[i].addAnimal(new Animal(x,y,"elephant"));break;
+						case 8: cages[i].addAnimal(new Animal(x,y,"cow"));break;
+						case 9: cages[i].addAnimal(new Animal(x,y,"hedgehog"));break;
+						case 10: cages[i].addAnimal(new Animal(x,y,"rhino"));break;
+						case 11: cages[i].addAnimal(new Animal(x,y,"frog"));break;
+						case 12: cages[i].addAnimal(new Animal(x,y,"bird"));break;
 					}
-					// int d =cages[i]->getNAnimal()-1; 
+					// int d =cages[i].getNAnimal()-1; 
 					// cout << d<< " ";
-					// cout <<cages[i]->getAnimal(d)->getX()<<" land ";
-					// cout <<cages[i]->getAnimal(d)->getY()<<endl;
-				}else if (cages[i]->getTipeHabitat()=="water"){
+					// cout <<cages[i].getAnimal(d).getX()<<" land ";
+					// cout <<cages[i].getAnimal(d).getY()<<endl;
+				}else if (cages[i].getTipeHabitat()=="water"){
 					
 					//random posisi awal, pastikan masih kosong
 					//random dari listOfPosisiCage
 					int nr;
-					bool found = false;
-					Cell * pos;
+					boolean found = false;
+					Cell pos;
 					while (!found){
-						nr = rand() % cages[i]->getNArea();
-						pos = cages[i]->getCagePosition(nr);
+						nr = rand() % cages[i].getNArea();
+						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
-						found = cages[i]->isPositionEmpty(pos);
+						found = cages[i].isPositionEmpty(pos);
 					}
 					// cout << pos << endl;
-					int x = pos->getX();
-					int y = pos->getY();
+					int x = pos.getX();
+					int y = pos.getY();
 					// cout <<x<<" water "<<y<<endl;
 
 					nr = rand() % 5 + 1;
 					// cout <<"nr = "<<nr<<endl;
 					switch(nr){
-						case 1: cages[i]->addAnimal(new Fish(x,y));break;
-						case 2: cages[i]->addAnimal(new Crocodile(x,y));break;
-						case 3: cages[i]->addAnimal(new Frog(x,y));break;
-						case 4: cages[i]->addAnimal(new Duck(x,y));break;
-						case 5: cages[i]->addAnimal(new Flyingfish(x,y));break;
+						case 1: cages[i].addAnimal(new Animal(x,y,"bird"));break;
+						case 2: cages[i].addAnimal(new Animal(x,y,"crocodile"));break;
+						case 3: cages[i].addAnimal(new Animal(x,y,"frog"));break;
+						case 4: cages[i].addAnimal(new Animal(x,y,"duck"));break;
+						case 5: cages[i].addAnimal(new Animal(x,y,"flyingfish"));break;
 					}
-					// int d =cages[i]->getNAnimal()-1; 
+					// int d =cages[i].getNAnimal()-1; 
 					// // cout << d<< " ";
-					// cout <<cages[i]->getAnimal(d)->getX()<<" water ";
-					// cout <<cages[i]->getAnimal(d)->getY()<<endl;
-				}else if (cages[i]->getTipeHabitat()=="air"){
+					// cout <<cages[i].getAnimal(d).getX()<<" water ";
+					// cout <<cages[i].getAnimal(d).getY()<<endl;
+				}else if (cages[i].getTipeHabitat()=="air"){
 					//random posisi awal, pastikan masih kosong
 					//random dari listOfPosisiCage
 					int nr;
-					bool found = false;
-					Cell * pos;
+					boolean found = false;
+					Cell pos;
 					while (!found){
-						nr = rand() % cages[i]->getNArea();
-						pos = cages[i]->getCagePosition(nr);
+						nr = rand() % cages[i].getNArea();
+						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
-						found = cages[i]->isPositionEmpty(pos);
+						found = cages[i].isPositionEmpty(pos);
 					}
 					
-					int x = pos->getX();
-					int y = pos->getY();
+					int x = pos.getX();
+					int y = pos.getY();
 					// cout <<x<<" air "<<y<<endl;
 
 					nr = rand() % 7 + 1;
 					switch(nr){
-						case 1: cages[i]->addAnimal(new Beetle(x,y));break;
-						case 2: cages[i]->addAnimal(new Bee(x,y));break;
-						case 3: cages[i]->addAnimal(new Owl(x,y));break;
-						case 4: cages[i]->addAnimal(new Eagle(x,y));break;
-						case 5: cages[i]->addAnimal(new Butterfly(x,y));break;
-						case 6: cages[i]->addAnimal(new Bird(x,y));break;
-						case 7: cages[i]->addAnimal(new Flyingfish(x,y));break;
+						case 1: cages[i].addAnimal(new Animal(x,y,"beetle"));break;
+						case 2: cages[i].addAnimal(new Animal(x,y,"bee"));break;
+						case 3: cages[i].addAnimal(new Animal(x,y,"owl"));break;
+						case 4: cages[i].addAnimal(new Animal(x,y,"eagle"));break;
+						case 5: cages[i].addAnimal(new Animal(x,y,"butterfly"));break;
+						case 6: cages[i].addAnimal(new Animal(x,y,"bird"));break;
+						case 7: cages[i].addAnimal(new Animal(x,y,"flyingfish"));break;
 					}
-					// int d =cages[i]->getNAnimal()-1; 
-					// // cout << d<< " ";
-					// cout <<cages[i]->getAnimal(d)->getX()<<" air ";
-					// cout <<cages[i]->getAnimal(d)->getY()<<endl;				
+					// int d =cages[i].getNAnimal()-1; 
+					// cout << d<< " ";
+					// cout <<cages[i].getAnimal(d).getX()<<" air ";
+					// cout <<cages[i].getAnimal(d).getY()<<endl;				
 				}
 			}
 		}
 
 
-		maps = new View(matriks_cell->getNBRS(),matriks_cell->getNKOL());
-		Cell* entrance = GetEntrance();
-		int x = entrance->getX();
-		int y = entrance->getY();
+		maps = new View(matriksCell.getNBrs(),matriksCell.getNKol());
+
+		int x = getEntrance().getX();
+		int y = getEntrance().getY();
 
 		person = new Visitor(x,y);
-		list_visited = new Cell*[n_road];
-		n_visited = 0;
-		current_visited = -1;
+		listVisited = new Cell*[nRoad];
+		nVisited = 0;
+		currentVisited = -1;
 	}
 
-	
-	public void addZooToMaps() {
-		for(int i=0; i<matriks_cell->getNBRS(); i++){
-			for(int j=0; j<matriks_cell->getNKOL(); j++){
-				maps->setVal(i,j,matriks_cell->getCell(i,j)->render());
+		
+		public void addZooToMaps() {
+			for(int i=0; i<matriksCell.getNBrs(); i++){
+			for(int j=0; j<matriksCell.getNKol(); j++){
+				maps.setVal(i,j,matriksCell.getCell(i,j).render());
 			}
 		}
-	}
-
-	public void addCageToMaps() {
+		}
+		
+		public void addCagetoMaps() {
 		int x,y;
-		for(int i=0; i<n_cage; i++) {
-			for(int j=0; j<cages[i]->getNArea(); j++) {
-				// cout << cages[i]->getCagePosition(j) << endl;
-				x = cages[i]->getCagePosition(j)->getX();
-				y = cages[i]->getCagePosition(j)->getY();
-				maps->setVal(x,y,cages[i]->render());
+		for(int i=0; i<nCage; i++) {
+			for(int j=0; j<cages[i].getNArea(); j++) {
+				// cout << cages[i].getCagePosition(j) << endl;
+				x = cages[i].getCagePosition(j).getX();
+				y = cages[i].getCagePosition(j).getY();
+				maps.setVal(x,y,cages[i].render());
 			}
 		}
 	}
 
-	public void addAnimalToMaps() {
+		public void addAnimalToMaps() {
 		int x,y,z;
-		for(int i=0; i<n_cage; i++) {
-			for(int j=0; j<cages[i]->getNAnimal(); j++) {
-				x = cages[i]->getAnimal(j)->getX();
-				y = cages[i]->getAnimal(j)->getY();
-				z = cages[i]->getAnimal(j)->getSimbol();
-				maps->setVal(x,y,z);
+		for(int i=0; i<nCage; i++) {
+			for(int j=0; j<cages[i].getNAnimal(); j++) {
+				x = cages[i].getAnimal(j).getX();
+				y = cages[i].getAnimal(j).getY();
+				z = cages[i].getAnimal(j).getSimbol();
+				// cout << cages[i].getAnimal(j).getSimbol() << endl;
+				maps.setVal(x,y,z);
+				// cout <<x <<" "<<y << endl;
 			}
 		}
 	}
 
-	public void addVisitorToMaps() {
-		int x = person->getX();
-		int y = person->getY();
-		int z = person->getSimbol();
-		maps->setVal(x,y,z);
+		public void addVisitorToMaps() {
+		int x = person.getX();
+		int y = person.getY();
+		int z = person.getSimbol();
+		maps.setVal(x,y,z);
 	}
 
-	public bool isInRage(int kiri,int atas,int kanan,int bawah) {
-		int x_max = matriks_cell->getNBRS();
-		int y_max = matriks_cell->getNKOL();
-		if (atas>=0 && kiri>=0 && bawah<=x_max && kanan<=y_max) {
+
+		public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
+		int xMax = matriksCell.getNBrs();
+		int yMax = matriksCell.getNKol();
+		if (atas>=0 && kiri>=0 && bawah<=xMax && kanan<=yMax) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 
-	public bool isInRage(int x, int y) {
-		int x_max = matriks_cell->getNBRS();
-		int y_max = matriks_cell->getNKOL();
-		if (x>=0 && y>=0 && x<x_max && y<y_max) {
+	public boolean isInRage(int x, int y) {
+		int xMax = matriksCell.getNBrs();
+		int yMax = matriksCell.getNKol();
+		if (x>=0 && y>=0 && x<xMax && y<yMax) {
 			return true;
 		} else {
 			return false;
@@ -301,98 +308,97 @@ public class VirtualZoo {
 	}
 
 	public void printVirtualZoo() {
-		AddZooToMaps();
-		AddCageToMaps();
-		AddAnimalToMaps();
-		AddVisitorToMaps();
-		maps->printView();
+		addZooToMaps();
+		addCagetoMaps();
+		addAnimalToMaps();
+		addVisitorToMaps();
+		maps.printView();
 	}
-	
 	public void printVirtualZoo(int kiri,int atas,int kanan,int bawah) {
-		AddZooToMaps();
-		AddCageToMaps();
-		AddAnimalToMaps();
-		AddVisitorToMaps();
-		maps->printView(kiri,atas,kanan,bawah);
+		addZooToMaps();
+		addCagetoMaps();
+		addAnimalToMaps();
+		addVisitorToMaps();
+		maps.printView(kiri,atas,kanan,bawah);
 	}
 
 	public void moveAnimal() {
-		for(int i = 0; i < n_cage; i++) {
-			for(int j = 0; j < cages[i]->getNAnimal(); j++) {
+		for(int i = 0; i < nCage; i++) {
+			for(int j = 0; j < cages[i].getNAnimal(); j++) {
 				//random posisi
 				int nr;
-				bool found = false;
-				Cell * pos;
+				boolean found = false;
+				Cell pos;
 				while (!found){
-					nr = rand() % cages[i]->getNArea();
-					pos = cages[i]->getCagePosition(nr);
+					nr = rand() % cages[i].getNArea();
+					pos = cages[i].getCagePosition(nr);
 
 					//cek apa ada hewan yang udah di posisi itu
-					found = cages[i]->isPositionEmpty(pos);
+					found = cages[i].isPositionEmpty(pos);
 				}
 
-				int x = pos->getX();
-				int y = pos->getY();
+				int x = pos.getX();
+				int y = pos.getY();
 
-				cages[i]->getAnimal(j)->setX(x);
-				cages[i]->getAnimal(j)->setY(y);
+				cages[i].getAnimal(j).setX(x);
+				cages[i].getAnimal(j).setY(y);
 			}
 		}
 	}
 
 	public void interact() {
-		int x_now = person->getX();
-		int y_now = person->getY();
+		int xNow = person.getX();
+		int yNow = person.getY();
 
-		int x_max = matriks_cell->getNBRS()-1;
-		int y_max = matriks_cell->getNKOL()-1;
+		int xMax = matriksCell.getNBrs()-1;
+		int yMax = matriksCell.getNKol()-1;
 
-		Cell** cell_available = new Cell*[4];
-		int n_available = 0;
+		Cell[] cellAvailable = new Cell[4];
+		int nAvailable = 0;
 
 		int x,y;
 
 		//kanan
-		x = x_now + 1;
-		y = y_now;
-		if (IsInRage(x,y)) {
-			PrintInteraction(x,y);
+		x = xNow + 1;
+		y = yNow;
+		if (isInRage(x,y)) {
+			printInteraction(x,y);
 		}
 		
 		//atas
-		x = x_now;
-		y = y_now + 1;
-		if (IsInRage(x,y)) {
-			PrintInteraction(x,y);
+		x = xNow;
+		y = yNow + 1;
+		if (isInRage(x,y)) {
+			printInteraction(x,y);
 		}
 
 		//kiri
-		x = x_now - 1;
-		y = y_now;
-		if (IsInRage(x,y)) {
-			PrintInteraction(x,y);
+		x = xNow - 1;
+		y = yNow;
+		if (isInRage(x,y)) {
+			printInteraction(x,y);
 		}
 		
 		//bawah
-		x = x_now;
-		y = y_now - 1;
-		if (IsInRage(x,y)) {
-			PrintInteraction(x,y);
+		x = xNow;
+		y = yNow - 1;
+		if (isInRage(x,y)) {
+			printInteraction(x,y);
 		}
 		
 	}
 
 	public void printInteraction(int x, int y) {
 		int i = 0;
-		bool found = false;
-		while (i < n_cage && !found) {
-			if (cages[i]->isPositionInCage(x, y)) {
+		boolean found = false;
+		while (i < nCage && !found) {
+			if (cages[i].isPositionInCage(x, y)) {
 				found = true;
 
-				for(int j=0; j<cages[i]->getNAnimal(); j++) {
-					cout << cages[i]->getAnimal(j)->interact() << " ";
+				for(int j=0; j<cages[i].getNAnimal(); j++) {
+					System.out.print(cages[i].getAnimal(j).interact() + " ");
 				}
-				cout <<endl;
+				System.out.println;
 			}
 			i++;
 		}
@@ -400,109 +406,118 @@ public class VirtualZoo {
 	}
 
 	public int getTotalMakanan() {
-		int total_makanan;
-		for(int i = 0; i < n_cage; i++) {
+		int totalMakanan;
+		for(int i = 0; i < nCage; i++) {
 			
-			total_makanan = total_makanan + cages[i]->getTotalMakanan();
+			totalMakanan = totalMakanan + cages[i].getTotalMakanan();
 			
 		}
 
-		return total_makanan;
+		return totalMakanan;
 	}
 
 	public Cell[] getEntrance() {
-		int rn = rand() % n_entrance;
-		return list_entrance[rn];
+		int rn = rand() % nEntrance;
+		return listEntrance[rn];
 	}
 
 	public void moveVisitor() {
-		int x_now = person->getX();
-		int y_now = person->getY();
+		int xNow = person.getX();
+		int yNow = person.getY();
 
-		int x_max = matriks_cell->getNBRS()-1;
-		int y_max = matriks_cell->getNKOL()-1;
+		int xMax = matriksCell.getNBrs()-1;
+		int yMax = matriksCell.getNKol()-1;
 
-		Cell** cell_available = new Cell*[4];
-		int n_available = 0;
+		Cell[] cellAvailable = new Cell[4];
+		int nAvailable = 0;
 
 		int x,y;
 
 		//kanan
-		x = x_now + 1;
-		y = y_now;
+		x = xNow + 1;
+		y = yNow;
 
-		if (x>=0 && y>=0 && x<=x_max && y<=y_max) {
-			if (matriks_cell->getCell(x,y)->getTipe() == "road") {
-				if (!IsVisited(matriks_cell->getCell(x,y))) {
-					cell_available[n_available] = matriks_cell->getCell(x,y);
-					n_available++;
+		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
+
+			if (matriksCell.getCell(x,y).getTipe() == "road" || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+
+			// cout << "masuk kanan" << endl;
+			
+				if (!isVisited(matriksCell.getCell(x,y))) {
+					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
+					nAvailable++;
 				}
 			}
 		}
 
 		//atas
-		x = x_now;
-		y = y_now + 1;
+		x = xNow;
+		y = yNow + 1;
 
-		if (x>=0 && y>=0 && x<=x_max && y<=y_max) {
-			if (matriks_cell->getCell(x,y)->getTipe() == "road" || matriks_cell->getCell(x,y)->getTipe() == "exit" ) {
-				if (!IsVisited(matriks_cell->getCell(x,y))) {
-					cell_available[n_available] = matriks_cell->getCell(x,y);
-					n_available++;
+		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
+			// cout << "masuk atas" << endl;
+			if (matriksCell.getCell(x,y).getTipe() == "road" || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+				if (!isVisited(matriksCell.getCell(x,y))) {
+					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
+					nAvailable++;
 				}
 			}
 		}
 
 		//kiri
-		x = x_now - 1;
-		y = y_now;
+		x = xNow - 1;
+		y = yNow;
 
-		if (x>=0 && y>=0 && x<=x_max && y<=y_max) {
-			if (matriks_cell->getCell(x,y)->getTipe() == "road"  || matriks_cell->getCell(x,y)->getTipe() == "exit" ) {
-				if (!IsVisited(matriks_cell->getCell(x,y))) {
-					cell_available[n_available] = matriks_cell->getCell(x,y);
-					n_available++;
+		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
+			// cout << "masuk kiri" << endl;
+			if (matriksCell.getCell(x,y).getTipe() == "road"  || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+				if (!isVisited(matriksCell.getCell(x,y))) {
+					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
+					nAvailable++;
 				}
 			}
 		}
 
 		//bawah
-		x = x_now;
-		y = y_now - 1;
+		x = xNow;
+		y = yNow - 1;
 
-		if (x>=0 && y>=0 && x<=x_max && y<=y_max) {
-			if (matriks_cell->getCell(x,y)->getTipe() == "road"  || matriks_cell->getCell(x,y)->getTipe() == "exit" ) {
-				if (!isVisited(matriks_cell->getCell(x,y))) {
-					cell_available[n_available] = matriks_cell->getCell(x,y);
-					n_available++;
+		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
+			// cout << "masuk bawah" << endl;
+			if (matriksCell.getCell(x,y).getTipe() == "road"  || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+				if (!isVisited(matriksCell.getCell(x,y))) {
+					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
+					nAvailable++;
 				}
 			}
 		}
 
 
-		if (n_available == 0) {
-			current_visited--;
-			int x_next = list_visited[current_visited]->getX();
-			int y_next = list_visited[current_visited]->getY();
-			person->setPosition(x_next, y_next);
+		if (nAvailable == 0) {
+			// cout << "tidak ada jalan" << endl;
+			currentVisited--;
+			int xNext = listVisited[currentVisited].getX();
+			int yNext = listVisited[currentVisited].getY();
+			person.setPosition(xNext, yNext);
 		} else {
-			int rn = rand() % n_available;
-			int x_next = cell_available[rn]->getX();
-			int y_next = cell_available[rn]->getY();
-			list_visited[n_visited] = cell_available[rn];
-			n_visited++;
-			current_visited++;
-			person->setPosition(x_next, y_next);
+			// cout << "ada jalan " << nAvailable << endl;
+			int rn = rand() % nAvailable;
+			int xNext = cellAvailable[rn].getX();
+			int yNext = cellAvailable[rn].getY();
+			listVisited[nVisited] = cellAvailable[rn];
+			nVisited++;
+			currentVisited++;
+			person.setPosition(xNext, yNext);
 		}
 
 
 	}
 
-	public bool isVisited(Cell* cel) {
-		bool visited = false;
+	public boolean isVisited(Cell* cel) {
+		boolean visited = false;
 		int i =0;
-		while (i < n_visited && !visited) {
-			if (list_visited[i]->getX() == cel->getX() && list_visited[i]->getY() == cel->getY()) {
+		while (i < nVisited && !visited) {
+			if (listVisited[i].getX() == cel.getX() && listVisited[i].getY() == cel.getY()) {
 				visited = true;
 			}
 			i++;
@@ -511,14 +526,14 @@ public class VirtualZoo {
 		return visited;
 	}
 
-	public bool isEndOfTour() {
-		int x = person->getX();
-		int y = person->getY();
-		bool end_of_tour = false;
-		if (matriks_cell->getCell(x,y)->getTipe() == "exit") {
-			end_of_tour = true;
+	public boolean isEndOfTour() {
+		int x = person.getX();
+		int y = person.getY();
+		boolean endOfTour = false;
+		if (matriksCell.getCell(x,y).getTipe() == "exit") {
+			endOfTour = true;
 		}
-		return end_of_tour;
+		return endOfTour;
 	}
 
 	public void tour() {
@@ -533,5 +548,6 @@ public class VirtualZoo {
 			interact();
 		}while (!isEndOfTour());
 	}
-	
+
+
 }

@@ -3,11 +3,13 @@
 
 public class View {
 	private char[][] val;
-	private const int NBRS;
-	private const int NKOL;
+	private final int NBRS;
+	private final int NKOL;
 	
 	
-	public View(int len, int wid) : NBRS(len), NKOL(wid) {
+	public View(int len, int wid) {
+		NBRS = len;
+		NKOL = wid;
 		val = new char [NBRS][NKOL];
 		for (int i=0; i<NBRS; i++) {
 			for (int j=0; j<NKOL; j++)
@@ -37,7 +39,7 @@ public class View {
 			for (int j=0; j<NKOL; j++) {
 				System.out.print(val[i][j]);
 			}
-			System.out.println;
+			System.out.println();
 		}	
 	}
 
@@ -46,7 +48,7 @@ public class View {
 			for (int j=kiri; j<kanan; j++) {
 				System.out.print(val[i][j]);
 			}
-			System.out.println;
+			System.out.println();
 		}	
 	}
 		
