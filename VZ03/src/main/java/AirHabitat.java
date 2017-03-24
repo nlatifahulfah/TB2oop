@@ -1,24 +1,37 @@
 // File : AirHabitat.java
 //PIC   : Letivany Aldina - 13514067
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author user
  */
 public class AirHabitat extends Cell implements Habitat {
-    private String tipe = "air";
-    public AirHabitat(int x, int y, char s){
-        super(x,y,s);
+    private final String tipeCell = "air";
+    private final char simbol = 'a';
+    
+    /**
+     * Constructor AirHabitat
+     * @param x posisi x Cell
+     * @param y posisi y Cell
+     */
+    public AirHabitat(int x, int y){
+        super(x,y);
     }
     
-    
+    /**
+     * mengembalikan tipe Cell dari Air Habitat
+     * @return string tipe Cell
+     */
     @Override
-    public String getTipe(){
-        return tipe;
+    public String getTipeCell(char s){
+        return tipeCell;
+    }
+    
+    /**
+     * mengembalikan simbol Cell Air Habitat
+     * @return simbol Cell
+     */
+    public char getSimbol(){
+        return simbol;
     }
 }

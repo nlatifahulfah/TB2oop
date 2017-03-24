@@ -1,22 +1,34 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+// File : Park.java
+// PIC  : Letivany Aldina - 13514067
 /**
  *
  * @author user
  */
 public class Park extends Cell implements Facility {
-    private String tipe = "park";
-    public Park(int x, int y, char s){
-        super(x,y,s);
+    private final String tipeCell = "park";
+    private final char simbol = 'p';
+    /**
+     * constructor kelas
+     * @param x posisi x Cell
+     * @param y posisi y Cell
+     */
+    public Park(int x, int y){
+        super(x,y);
     }
     
-   
+    /**
+     * mengembalikan tipe Cell dari park
+     * @return string tipe Cell
+     */
     @Override
-    public getTipe(){
-        return tipe;
+    public String getTipeCell(){
+        return tipeCell;
+    }
+    /**
+     * mengembalikan simbol tipe Cell
+     * @return char simbol Cell
+     */
+    public char getSimbol(){
+        return simbol;
     }
 }

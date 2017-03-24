@@ -14,36 +14,10 @@ abstract class Cell implements Renderable {
      * konstruktor sebuah Cell
      * @param x posisi x sebuah Cell
      * @param y posisi y sebuah Cell
-     * @param s simbol s sebuah Cell
      */
-    public Cell (int x, int y, char s){
+    public Cell (int x, int y){
         this.x = x;
         this.y = y;
-        
-        if (s=='w'){
-            tipeCell = "water";
-        }
-        else if (s=='l'){
-            tipeCell = "land";
-        }
-        else if (s=='a'){
-            tipeCell = "air";
-        }
-        else if (s=='p'){
-            tipeCell = "park";
-        }
-        else if (s='r'){
-            tipeCell = "road";
-        }
-        else if (s=='n'){
-            tipeCell = "entrance";
-        }
-        else if (s=='x'){
-            tipeCell = "exit";
-        }
-        else if (s=='t'){
-            tipeCell = "restourant";
-        }
     }
     
     /**
@@ -51,7 +25,7 @@ abstract class Cell implements Renderable {
      * @param s simbol dari Cell
      * @return string tipe Cell
      */
-    public abstract String getTipe(char s);
+    public abstract String getTipeCell();
     
     /**
      * mendapatkan posisi x
@@ -82,6 +56,6 @@ abstract class Cell implements Renderable {
      * @param y nilai y yang diset
      */
     public void setY(int y){
-        this.y = y
+        this.y = y;
     }
 }

@@ -1,23 +1,38 @@
 // File : LandHabitat.java
 // PIC  : Letivany Aldina - 13514067
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
  * @author user
  */
 public class LandHabitat extends Cell implements Habitat {
-    private String tipe = "land";
-    public LandHabitat(int x, int y, char s){
-        super(x,y,s);
+    private final String tipeCell = "land";
+    private final char simbol = 'l';
+    
+    /**
+     * Constructor Land Habitat
+     * @param x posisi x Cell
+     * @param y posisi y Cell
+     */
+    public LandHabitat(int x, int y){
+        super(x,y);
     }
     
+    /**
+     * mengembalikan tipe Cell dari habitat land
+     * @param s
+     * @return 
+     */
     @Override
-    public String getTipe(char s){
-        return tipe;
+    public String getTipeCell(){
+        return tipeCell;
+    }
+    
+    /**
+     * mengembalikan simbol Cell
+     * @return simbol Cell
+     */
+    public char getSimbol(){
+        return simbol;
     }
 }
