@@ -13,7 +13,7 @@
 public class AirHabitat extends Cell implements Habitat {
     private String tipe = "air";
     public AirHabitat(int x, int y, char s){
-        super(x,y,s)
+        super(x,y,s);
     }
     
     
