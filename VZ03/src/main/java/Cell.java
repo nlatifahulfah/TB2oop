@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// File : Cell.java
+// PIC  : Letivany Aldina - 13514067
 
 /**
  *
@@ -13,6 +10,12 @@ abstract class Cell implements Renderable {
     private int y;
     private String tipeCell;
     
+    /**
+     * konstruktor sebuah Cell
+     * @param x posisi x sebuah Cell
+     * @param y posisi y sebuah Cell
+     * @param s simbol s sebuah Cell
+     */
     public Cell (int x, int y, char s){
         this.x = x;
         this.y = y;
@@ -43,20 +46,41 @@ abstract class Cell implements Renderable {
         }
     }
     
+    /**
+     * mendapatkan tipe sebuah Cell
+     * @param s simbol dari Cell
+     * @return string tipe Cell
+     */
     public abstract String getTipe(char s);
     
+    /**
+     * mendapatkan posisi x
+     * @return nilai x
+     */
     public int getX(){
         return x;
     }
     
+    /**
+     * mendapatkan posisi y
+     * @return nilai y
+     */
     public int getY(){
         return y;
     }
     
+    /**
+     * set nilai x
+     * @param x nilai x yang diset
+     */
     public void setX(int x){
         this.x = x;
     }
     
+    /**
+     * set nilai y
+     * @param y nilai y yang diset
+     */
     public void setY(int y){
         this.y = y
     }
