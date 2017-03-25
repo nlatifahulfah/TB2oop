@@ -5,6 +5,6 @@
  *
  * @author Letivany Aldina - 13514067
  */
-public class Facility extends Cell {
+interface Facility {
     
 }

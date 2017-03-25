@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 // File : Cage.java
 // PIC : Letivany Aldina - 13514067
+=======
+// File : Cell.java
+// PIC  : Letivany Aldina - 13514067
+>>>>>>> 547e9d1ee4f245a7dd9e3a1783f653021786f6b2
 
 /**
  *
@@ -10,51 +15,52 @@ abstract class Cell implements Renderable {
     private int y;
     private String tipeCell;
     
-    public Cell (int x, int y, char s){
+    /**
+     * konstruktor sebuah Cell
+     * @param x posisi x sebuah Cell
+     * @param y posisi y sebuah Cell
+     */
+    public Cell (int x, int y){
         this.x = x;
         this.y = y;
-        
-        if (s=='w'){
-            tipeCell = "water";
-        }
-        else if (s=='l'){
-            tipeCell = "land";
-        }
-        else if (s=='a'){
-            tipeCell = "air";
-        }
-        else if (s=='p'){
-            tipeCell = "park";
-        }
-        else if (s='r'){
-            tipeCell = "road";
-        }
-        else if (s=='n'){
-            tipeCell = "entrance";
-        }
-        else if (s=='x'){
-            tipeCell = "exit";
-        }
-        else if (s=='t'){
-            tipeCell = "restourant";
-        }
     }
     
-    public abstract String getTipe(char s);
+    /**
+     * mendapatkan tipe sebuah Cell
+     * @param s simbol dari Cell
+     * @return string tipe Cell
+     */
+    public abstract String getTipeCell();
     
+    /**
+     * mendapatkan posisi x
+     * @return nilai x
+     */
     public int getX(){
         return x;
     }
     
+    /**
+     * mendapatkan posisi y
+     * @return nilai y
+     */
     public int getY(){
         return y;
     }
     
+    /**
+     * set nilai x
+     * @param x nilai x yang diset
+     */
     public void setX(int x){
         this.x = x;
     }
     
+    /**
+     * set nilai y
+     * @param y nilai y yang diset
+     */
     public void setY(int y){
-        this.y = y
+        this.y = y;
     }
 }

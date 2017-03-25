@@ -6,13 +6,31 @@
  * @author Letivany Aldina - 13514067
  */
 public class Road extends Cell implements Facility {
-    private String tipe = "road";
-    public Road(int x, int y, char s){
-        super(x,y,s);
+    private final String tipeCell = "road";
+    private final char simbol = 'r';
+    /**
+     * Constructor kelas Road
+     * @param x posisi x cell road
+     * @param y posisi y cell road
+     */
+    public Road(int x, int y){
+        super(x,y);
     }
     
+    /**
+     * mengembalikan tipe Cell dari road
+     * @return string tipe Cell
+     */
     @Override
-    public String getTipe(){
-        return tipe;
+    public String getTipeCell(){
+        return tipeCell;
+    }
+    
+    /**
+     * mengembalikan simbol Cell dari road
+     * @return char simbol Cell
+     */
+    public char getSimbol(){
+        return simbol;
     }
 }

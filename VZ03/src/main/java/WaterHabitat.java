@@ -6,13 +6,26 @@
  * @author Letivany Aldina - 13514067
  */
 public class WaterHabitat extends Cell implements Habitat {
-    private String tipe = "water";
-    public WaterHabitat(int x, int y, char s){
-        super(x,y,s);
+    private final String tipeCell = "water";
+    private final char simbol = 'w';
+    public WaterHabitat(int x, int y){
+        super(x,y);
     }
     
+    /**
+     * mengembalikan tipe Cell dari WaterHabitat
+     * @return string tipe Cell
+     */
     @Override
-    public String getTipe(char s){
-        return tipe;
+    public String getTipeCell(){
+        return tipeCell;
+    }
+    
+    /**
+     * mengembalikan simbol Cell
+     * @return char simbol Cell
+     */
+    public char getSimbol(){
+        return simbol;
     }
 }
