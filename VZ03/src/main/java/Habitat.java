@@ -1,15 +1,9 @@
 // File : Habitat.java
-// PIC  : Letivany Aldina - 13514067
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+// PIC : Letivany Aldina - 13514067
 
 /**
  *
- * @author user
+ * @author Letivany Aldina - 13514067
  */
 abstract class Habitat extends Cell {
    

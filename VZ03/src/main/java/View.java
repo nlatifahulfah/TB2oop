@@ -1,6 +1,10 @@
 // File	: View.java
 // PIC	: Hasna Nur Karimah - 13514106
 
+/**
+ *
+ * @author Hasna Nur Karimah - 13514106
+ */
 public class View {
 	private char[][] val;
 	private final int NBRS;

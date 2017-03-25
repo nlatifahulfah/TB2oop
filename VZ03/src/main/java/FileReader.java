@@ -1,6 +1,10 @@
 // File : FileReader.java
 // PIC : Denita Hanna Widiasuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 import java.util.ArrayList;
 import java.io.*;
 import java.util.*;

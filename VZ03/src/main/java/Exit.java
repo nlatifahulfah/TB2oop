@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+// File : Exit.java
+// PIC  : Letivany Aldina - 13514067
 
 /**
  *
- * @author user
+ * @author Letivany Aldina - 13514067
  */
 public class Exit extends Cell implements Road {
     private String tipe = "exit";

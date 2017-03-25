@@ -1,4 +1,10 @@
+// File : Animal.java
+// PIC  : Nur Latifah Ulfah - 13514015
 
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 abstract class Animal implements Renderable {
 	private int x;
 	private int y;

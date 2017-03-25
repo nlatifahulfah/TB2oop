@@ -1,14 +1,9 @@
 // File : AirHabitat.java
 //PIC   : Letivany Aldina - 13514067
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  *
- * @author user
+ * @author Letivany Aldina - 13514067
  */
 public class AirHabitat extends Cell implements Habitat {
     private String tipe = "air";
