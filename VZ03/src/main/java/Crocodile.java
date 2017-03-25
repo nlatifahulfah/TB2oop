@@ -1,6 +1,10 @@
 // File : Crocodile.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 public class Crocodile extends Animal implements WaterHabitat, Karnivora {
 	private final String TIPEANIMAL = "crocodile";
 	private final char SIMBOL = 'j';

@@ -1,6 +1,10 @@
 // File : Hedgehog.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 public class Hedgehog extends Animal implements LandHabitat, Herbivora {
 	private final String TIPEANIMAL = "hedgehog";
 	private final char SIMBOL = 'h';

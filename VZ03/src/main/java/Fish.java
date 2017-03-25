@@ -1,6 +1,10 @@
 // File : Fish.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 public class Fish extends Animal implements WaterHabitat, Omnivora {
 	private final String TIPEANIMAL = "fish";
 	private final char SIMBOL = 'i';

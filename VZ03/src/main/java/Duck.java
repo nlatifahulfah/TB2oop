@@ -1,6 +1,10 @@
 // File : Duck.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 public class Duck extends Animal implements WaterHabitat, Omnivora {
 	private final String TIPEANIMAL = "duck";
 	private final char SIMBOL = 'k';

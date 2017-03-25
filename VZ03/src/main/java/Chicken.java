@@ -1,6 +1,10 @@
 // File : Chicken.java
 // PIC : Denita Hanna Widiastuti - 13514008
 
+/**
+ *
+ * @author Denita Hanna Widiastuti - 13514008
+ */
 public class Chicken extends Animal implements LandHabitat, Omnivora {
 	private final String TIPEANIMAL = "chicken";
 	private final char SIMBOL = 'n';
