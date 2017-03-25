@@ -1,6 +1,10 @@
-// File	: View.java
+// File	: Bee.java
 // PIC	: Hasna Nur Karimah - 13514106
 
+/**
+ *
+ * @author  Hasna Nur Karimah - 13514106
+ */
 public class Bird extends Animal implements FlyingAnimal, Herbivora {
 	private final String TIPEANIMAL = "bee";
 	private final char SIMBOL = 'z';

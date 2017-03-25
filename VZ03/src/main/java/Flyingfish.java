@@ -1,4 +1,10 @@
+// File : Flyingfish.java
+// PIC  : Nur Latifah Ulfah - 13514015
 
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 public class Flyingfish extends Animal implements WaterAnimal, FlyingAnimal, Karnivora {
 	private final String TIPEANIMAL = "flyingfish";
 	private final char SIMBOL = 'y';

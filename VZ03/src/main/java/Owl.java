@@ -1,6 +1,10 @@
-// File	: View.java
+// File	: Owl.java
 // PIC	: Hasna Nur Karimah - 13514106
 
+/**
+ *
+ * @author  Hasna Nur Karimah - 13514106
+ */
 public class Bird extends Animal implements FlyingAnimal, Karnivora {
 	private final String TIPEANIMAL = "owl";
 	private final char SIMBOL = 'o';

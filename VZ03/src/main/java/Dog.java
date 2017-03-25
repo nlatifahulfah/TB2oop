@@ -1,4 +1,10 @@
+// File : Dog.java
+// PIC  : Nur Latifah Ulfah - 13514015
 
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 public class Dog extends Animal implements LandHabitat, Karnivora{
 	private final String TIPEANIMAL = "dog";
 	private final char SIMBOL = 'd';

@@ -1,4 +1,10 @@
+// File : Lion.java
+// PIC  : Nur Latifah Ulfah - 13514015
 
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 public class Lion extends Animal implements LandHabitat, Karnivora{
 	private final String TIPEANIMAL = "lion";
 	private final char SIMBOL = 'l';

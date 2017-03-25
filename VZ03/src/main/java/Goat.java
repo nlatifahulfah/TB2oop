@@ -1,4 +1,10 @@
+// File : Goat.java
+// PIC  : Nur Latifah Ulfah - 13514015
 
+/**
+ *
+ * @author Nur Latifah Ulfah - 13514015
+ */
 public class Goat extends Animal implements LandHabitat, Herbivora{
 	private final String TIPEANIMAL = "goat";
 	private final char SIMBOL = 'g';

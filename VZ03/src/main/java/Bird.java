@@ -1,6 +1,10 @@
-// File	: View.java
+// File	: Bird.java
 // PIC	: Hasna Nur Karimah - 13514106
 
+/**
+ *
+ * @author  Hasna Nur Karimah - 13514106
+ */
 public class Bird extends Animal implements LandAnimal, FlyingAnimal, Karnivora {
 	private final String TIPEANIMAL = "bird";
 	private final char SIMBOL = 'b';
