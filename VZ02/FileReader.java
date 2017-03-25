@@ -5,13 +5,18 @@ import java.util.ArrayList;
 import java.io.*;
 import java.util.*;
 import java.util.List;
+import java.io.File;
+import java.util.Scanner;
+import java.net.URL;
 
 /**
  *
  * @author Denita Hanna Widiasuti - 13514008
  */
 public class FileReader {
-	private FileInputStream file;  // File eksternal yang akan dibaca
+	private File file;
+	private Scanner sc;
+	//private String fileName;
 	private int nbrs; 	/**< nbrs adalah jumlah baris area Zoo, */
 	private int nkol;	/**	nkol adalah jumlah kolom area Zoo */
 	private int nCellType; /**< nCellType adalah jumlah tipe Cell yang ada */
@@ -49,63 +54,76 @@ public class FileReader {
 	* @param fileName Nama file eksternal yang akan dibaca
 	*/
 	public void FileReader(String fileName) {
-		file = new FileInputStream(fileName);
-		file.open();
-		Read();
-		file.close();
+		URL path = ClassLoader.getSystemResource(fileName);
+		file = new File(path.toString());
+		try (Scanner sc = new Scanner(file);) {
+			read();
+		} catch (FileNotFoundException e) {
+			;
+		}
 	}
 
 	/**
-	* @brief Membaca seluruh file 
+	* Membaca seluruh file 
 	*/
-	public void read() {
-		file >> nbrs >> nkol;
+	public void read() {		
+		nbrs = sc.nextInt();
+		nkol = sc.nextInt();
+		sc.nextLine();
 		// cout<<nbrs<<" "<< nkol<<endl;
 
-		file >> nCellType;
+		nCellType = sc.nextInt();
+		sc.nextLine();
 		String listCellType[] = new String[nCellType];
 		char listCellSimbol[] = new char[nCellType];
 		for(int i=0; i<nCellType; i++) {
-			file >> listCellSimbol[i] >> listCellType[i];
+			listCellSimbol[i] = sc.next().charAt(0);
+			listCellType[i] = sc.next();
+			sc.nextLine();
 			// cout << listCellSimbol[i] << " " << listCellType[i] <<endl;
 		}
 
 		char maps[][] = new char[nbrs][nkol];
 		for(int i=0; i<nbrs; i++) {
-			for(int j=0; j<nkol; j++) {
-				file >> maps[i][j];
+			for (int j=0; j<nkol; j++) {
+				maps[i][j] = sc.next().charAt(0);
 				// cout << maps[i][j];
 			}
+			sc.nextLine();
 			// cout << endl;
 		}
 
-		file >> nCage;
+		nCage = sc.nextInt();
 		char listCageSimbol[] = new char[nCage];
 		String listCageType[] = new String[nCage];
 		int listNCageArea[] = new int[nCage];
 		for(int i=0; i<nCage; i++){
-			file >> listCageSimbol[i];
-			file >> listCageType[i];
-			file >> listNCageArea[i];
-
+			listCageSimbol[i] = sc.next().charAt(0);
+			listCageType[i] = sc.next();
+			listNCageArea[i] = sc.nextInt();
+			sc.nextLine();
 		}
 
 		// cout <<"sum area = "<< GetSumCageArea() << endl;
 		int listNAnimal[] = new int[nCage];
-		int listPos[][] = new int[GetSumCageArea()][2];
+		int listPos[][] = new int[getSumCageArea()][2];
 		
 		int c=0;
 		int d=0;
 		for(int i=0; i<nCage; i++) {
 			for(int j=0; j<listNCageArea[i]; j++) {
-				file >> listPos[c][0] >> listPos[c][1];
+				listPos[c][0] = sc.nextInt();
+				listPos[c][1] = sc.nextInt();
+				sc.nextLine();
 				// cout << listPos[c][0] <<" "<< listPos[c][1] << endl;
 				c++;
 			}
-			file >> listNAnimal[d];
+			listNAnimal[d] = sc.nextInt();
 			// cout << "nAnimal:" <<listNAnimal[d] <<endl;
 			d++;
 		}
+
+		sc.close();
 	}
 
 	/**
