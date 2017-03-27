@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Frog extends Animal implements LandHabitat, WaterHabitat, Karnivora {
+public class Frog extends Animal implements LandAnimal, WaterAnimal, Karnivora {
 	private final String TIPEANIMAL = "frog";
 	private final char SIMBOL = 'f';
 	private int bobot;

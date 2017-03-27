@@ -63,4 +63,26 @@ abstract class Animal implements Renderable {
 	* @return Interaksi yang diberikan Animal
 	*/
 	public abstract String interact();
+	
+	/**
+	* Mendapatkan nilai bobot dari Animal
+	*
+	* @return bobot saat ini
+	*/
+	public abstract int getBobot();
+	
+	/**
+	* Mendapatkan simbol dari Animal
+	*
+	* @return simbol
+	*/
+	public abstract char getSimbol();
+	
+	/**
+	* Mendapatkan tipeHabitat dari Animal
+	* 
+	* @return tipeHabitat
+	*/
+	public abstract String[] getTipeHabitat();
+	
 } 

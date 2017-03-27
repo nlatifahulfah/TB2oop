@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Crocodile extends Animal implements WaterHabitat, Karnivora {
+public class Crocodile extends Animal implements WaterAnimal, Karnivora {
 	private final String TIPEANIMAL = "crocodile";
 	private final char SIMBOL = 'j';
 	private int bobot;

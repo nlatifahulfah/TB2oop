@@ -21,13 +21,13 @@ public class Animal {
 		this.x = x;
 		this.y = y;
 		
-		if (tipeAnimal=="frog" || tipeAnimal=="flyingfish" || tipeAnimal=="bird") 
+		if (tipeAnimal=="frog" || tipeAnimal=="flyingfish" || tipeAnimal=="bird") {
 			nHabitat=2;
 		} else 
 			nHabitat=1;
 
-		tipeHabitat = new string[nHabitat];
-		musuh = new string[2];
+		tipeHabitat = new String[nHabitat];
+		musuh = new String[2];
 
 		if (tipeAnimal=="frog") {
 			simbol = 'f';

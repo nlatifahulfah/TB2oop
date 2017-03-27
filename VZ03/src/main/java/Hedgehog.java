@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Hedgehog extends Animal implements LandHabitat, Herbivora {
+public class Hedgehog extends Animal implements LandAnimal, Herbivora {
 	private final String TIPEANIMAL = "hedgehog";
 	private final char SIMBOL = 'h';
 	private int bobot;

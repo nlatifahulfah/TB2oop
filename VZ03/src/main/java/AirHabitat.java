@@ -23,7 +23,7 @@ public class AirHabitat extends Cell implements Habitat {
      * @return string tipe Cell
      */
     @Override
-    public String getTipeCell(char s){
+    public String getTipeCell() {
         return tipeCell;
     }
     
@@ -31,7 +31,8 @@ public class AirHabitat extends Cell implements Habitat {
      * mengembalikan simbol Cell Air Habitat
      * @return simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

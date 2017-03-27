@@ -5,9 +5,12 @@
  *
  * @author Hasna Nur Karimah - 13514106
  */
+ 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class VirtualZoo {
 
-	private MatrixCell[] matriksCell;
+	private MatrixCell matriksCell;
 		
 	private int nEntrance;
 	private Cell[] listEntrance;
@@ -16,7 +19,7 @@ public class VirtualZoo {
 
 	private int nCage;
 	private Cage[] cages;
-	private View[] maps;	
+	private View maps;	
 
 	private Visitor person;
 
@@ -29,10 +32,11 @@ public class VirtualZoo {
 	* Constructor
 	* @param input_file Nama file input yang berisi konfigurasi Zoo
 	*/
-	public VirtualZoo(string inputFile) {
-		FileReader data(inputFile);
+	public VirtualZoo(String inputFile) {
 		
-		data.Read();	
+		FileReader data = new FileReader(inputFile);
+		
+		data.read();	
 
 		// 1. Inisialisasi Virtual Zoo
 		matriksCell = new MatrixCell(data.getNBrs(), data.getNKol());
@@ -44,7 +48,7 @@ public class VirtualZoo {
 		nEntrance = 0;
 		listExit = new Cell[max];
 		nExit = 0;
-		n_road;
+		nRoad = 0;
 		
 		char c;
 		for(int i=0; i<matriksCell.getNBrs(); i++){
@@ -63,26 +67,26 @@ public class VirtualZoo {
 
 				//inisialisasi
 				if (data.getCellType(k)=="airhabitat"){
-					matriksCell.setCell(new Cell(i,j,c), i, j);
+					matriksCell.setCell(new AirHabitat(i,j),i,j);
 				}else if (data.getCellType(k)=="waterhabitat"){
-					matriksCell.setCell(new Cell(i,j,c), i, j);
+					matriksCell.setCell(new WaterHabitat(i,j),i,j);
 				}else if (data.getCellType(k)=="landhabitat"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
+					matriksCell.setCell(new LandHabitat(i,j),i,j);
 				}else if (data.getCellType(k)=="road"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
+					matriksCell.setCell(new Road(i,j),i,j);
 					nRoad++;
 				}else if(data.getCellType(k)=="park"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
+					matriksCell.setCell(new Park(i,j),i,j);
 				}else if(data.getCellType(k)=="restourant"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
+					matriksCell.setCell(new Restourant(i,j),i,j);
 				}else if(data.getCellType(k)=="entrance"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
-					listEntrance[nEntrance] = new Cell(i,j, c);
+					matriksCell.setCell(new Entrance(i,j),i,j);
+					listEntrance[nEntrance] = new Entrance(i,j);
 					nEntrance++;
-					n_road++;
+					nRoad++;
 				}else if(data.getCellType(k)=="exit"){
-					matriksCell.setCell(new Cell(i,j, c), i, j);
-					listExit[nExit] = new Cell(i,j, c);
+					matriksCell.setCell(new Exit(i,j),i,j);
+					listExit[nExit] = new Exit(i,j);
 					nExit++;
 					nRoad++;
 				}
@@ -111,9 +115,9 @@ public class VirtualZoo {
 				y = data.getPosY(j);
 				// cout << x <<" "<< y <<endl;
 				// cek apakah cell memiliki tipe yang sesuai
-				// cout<<matriksCell.getCell(x,y).getTipe() <<" ";
+				// cout<<matriksCell.getCell(x,y).getTipeCell() <<" ";
 				// cout<< cages[i].getTipeHabitat()<<endl;
-				if(matriksCell.getCell(x,y).getTipe() == cages[i].getTipeHabitat()){
+				if(matriksCell.getCell(x,y).getTipeCell() == cages[i].getTipeHabitat()){
 					cages[i].addCagePosition(matriksCell.getCell(x,y));
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getX()<<" ";
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getY()<<endl;
@@ -141,32 +145,35 @@ public class VirtualZoo {
 					int nr;
 					boolean found = false;
 					Cell pos;
-					while (!found){
-						nr = rand() % cages[i].getNArea();
+					do {
+						//nr = rand() % cages[i].getNArea();
+						nr = ThreadLocalRandom.current().nextInt(cages[i].getNArea());
+			
 						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
 						found = cages[i].isPositionEmpty(pos);
-					}
+					} while (!found);
 					
 					int x = pos.getX();
 					int y = pos.getY();
 					// cout <<x<<" land "<<y<<endl;
 					//ciptakan hewan
-					nr = rand() % 12 + 1;
+					//nr = rand() % 12 + 1;
+					nr = ThreadLocalRandom.current().nextInt(1, 12+1);
 					switch(nr){
-						case 1: cages[i].addAnimal(new Animal(x,y,"cat"));break;
-						case 2: cages[i].addAnimal(new Animal(x,y,"dog"));break;
-						case 3: cages[i].addAnimal(new Animal(x,y,"lion"));break;
-						case 4: cages[i].addAnimal(new Animal(x,y,"snake"));break;
-						case 5: cages[i].addAnimal(new Animal(x,y,"goat"));break;
-						case 6: cages[i].addAnimal(new Animal(x,y,"chicken"));break;
-						case 7: cages[i].addAnimal(new Animal(x,y,"elephant"));break;
-						case 8: cages[i].addAnimal(new Animal(x,y,"cow"));break;
-						case 9: cages[i].addAnimal(new Animal(x,y,"hedgehog"));break;
-						case 10: cages[i].addAnimal(new Animal(x,y,"rhino"));break;
-						case 11: cages[i].addAnimal(new Animal(x,y,"frog"));break;
-						case 12: cages[i].addAnimal(new Animal(x,y,"bird"));break;
+						case 1: cages[i].addAnimal(new Cat(x,y));break;
+						case 2: cages[i].addAnimal(new Dog(x,y));break;
+						case 3: cages[i].addAnimal(new Lion(x,y));break;
+						case 4: cages[i].addAnimal(new Snake(x,y));break;
+						case 5: cages[i].addAnimal(new Goat(x,y));break;
+						case 6: cages[i].addAnimal(new Chicken(x,y));break;
+						case 7: cages[i].addAnimal(new Elephant(x,y));break;
+						case 8: cages[i].addAnimal(new Cow(x,y));break;
+						case 9: cages[i].addAnimal(new Hedgehog(x,y));break;
+						case 10: cages[i].addAnimal(new Rhino(x,y));break;
+						case 11: cages[i].addAnimal(new Frog(x,y));break;
+						case 12: cages[i].addAnimal(new Bird(x,y));break;
 					}
 					// int d =cages[i].getNAnimal()-1; 
 					// cout << d<< " ";
@@ -179,26 +186,29 @@ public class VirtualZoo {
 					int nr;
 					boolean found = false;
 					Cell pos;
-					while (!found){
-						nr = rand() % cages[i].getNArea();
+					do {
+						//nr = rand() % cages[i].getNArea();
+						nr = ThreadLocalRandom.current().nextInt(cages[i].getNArea());
 						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
 						found = cages[i].isPositionEmpty(pos);
-					}
+					} while (!found);
 					// cout << pos << endl;
 					int x = pos.getX();
 					int y = pos.getY();
 					// cout <<x<<" water "<<y<<endl;
 
-					nr = rand() % 5 + 1;
+					//nr = rand() % 5 + 1;
+					nr = ThreadLocalRandom.current().nextInt(1, 5+1);
+			
 					// cout <<"nr = "<<nr<<endl;
 					switch(nr){
-						case 1: cages[i].addAnimal(new Animal(x,y,"bird"));break;
-						case 2: cages[i].addAnimal(new Animal(x,y,"crocodile"));break;
-						case 3: cages[i].addAnimal(new Animal(x,y,"frog"));break;
-						case 4: cages[i].addAnimal(new Animal(x,y,"duck"));break;
-						case 5: cages[i].addAnimal(new Animal(x,y,"flyingfish"));break;
+						case 1: cages[i].addAnimal(new Bird(x,y));break;
+						case 2: cages[i].addAnimal(new Crocodile(x,y));break;
+						case 3: cages[i].addAnimal(new Frog(x,y));break;
+						case 4: cages[i].addAnimal(new Duck(x,y));break;
+						case 5: cages[i].addAnimal(new Flyingfish(x,y));break;
 					}
 					// int d =cages[i].getNAnimal()-1; 
 					// // cout << d<< " ";
@@ -210,27 +220,31 @@ public class VirtualZoo {
 					int nr;
 					boolean found = false;
 					Cell pos;
-					while (!found){
-						nr = rand() % cages[i].getNArea();
+					do {
+						//nr = rand() % cages[i].getNArea();
+						nr = ThreadLocalRandom.current().nextInt(cages[i].getNArea());
+			
 						pos = cages[i].getCagePosition(nr);
 
 						//cek apa ada hewan yang udah di posisi itu
 						found = cages[i].isPositionEmpty(pos);
-					}
+					} while (!found);
 					
 					int x = pos.getX();
 					int y = pos.getY();
 					// cout <<x<<" air "<<y<<endl;
 
-					nr = rand() % 7 + 1;
+					//nr = rand() % 7 + 1;
+					nr = ThreadLocalRandom.current().nextInt(1, 7+1);
+			
 					switch(nr){
-						case 1: cages[i].addAnimal(new Animal(x,y,"beetle"));break;
-						case 2: cages[i].addAnimal(new Animal(x,y,"bee"));break;
-						case 3: cages[i].addAnimal(new Animal(x,y,"owl"));break;
-						case 4: cages[i].addAnimal(new Animal(x,y,"eagle"));break;
-						case 5: cages[i].addAnimal(new Animal(x,y,"butterfly"));break;
-						case 6: cages[i].addAnimal(new Animal(x,y,"bird"));break;
-						case 7: cages[i].addAnimal(new Animal(x,y,"flyingfish"));break;
+						case 1: cages[i].addAnimal(new Beetle(x,y));break;
+						case 2: cages[i].addAnimal(new Bee(x,y));break;
+						case 3: cages[i].addAnimal(new Owl(x,y));break;
+						case 4: cages[i].addAnimal(new Eagle(x,y));break;
+						case 5: cages[i].addAnimal(new Butterfly(x,y));break;
+						case 6: cages[i].addAnimal(new Bird(x,y));break;
+						case 7: cages[i].addAnimal(new Flyingfish(x,y));break;
 					}
 					// int d =cages[i].getNAnimal()-1; 
 					// cout << d<< " ";
@@ -247,7 +261,7 @@ public class VirtualZoo {
 		int y = getEntrance().getY();
 
 		person = new Visitor(x,y);
-		listVisited = new Cell*[nRoad];
+		listVisited = new Cell[nRoad];
 		nVisited = 0;
 		currentVisited = -1;
 	}
@@ -282,7 +296,8 @@ public class VirtualZoo {
 	* Menambahkan simbol2 dari Animal ke Maps
 	*/
 	public void addAnimalToMaps() {
-		int x,y,z;
+		int x,y;
+		char z;
 		for(int i=0; i<nCage; i++) {
 			for(int j=0; j<cages[i].getNAnimal(); j++) {
 				x = cages[i].getAnimal(j).getX();
@@ -301,7 +316,7 @@ public class VirtualZoo {
 	public void addVisitorToMaps() {
 		int x = person.getX();
 		int y = person.getY();
-		int z = person.getSimbol();
+		char z = person.getSimbol();
 		maps.setVal(x,y,z);
 	}
 
@@ -380,14 +395,16 @@ public class VirtualZoo {
 				int nr;
 				boolean found = false;
 				Cell pos;
-				while (!found){
-					nr = rand() % cages[i].getNArea();
+				do {
+					//nr = rand() % cages[i].getNArea();
+					nr = ThreadLocalRandom.current().nextInt(cages[i].getNArea());
+			
 					pos = cages[i].getCagePosition(nr);
 
 					//cek apa ada hewan yang udah di posisi itu
 					found = cages[i].isPositionEmpty(pos);
-				}
-
+				} while (!found);
+ 
 				int x = pos.getX();
 				int y = pos.getY();
 
@@ -458,7 +475,7 @@ public class VirtualZoo {
 				for(int j=0; j<cages[i].getNAnimal(); j++) {
 					System.out.print(cages[i].getAnimal(j).interact() + " ");
 				}
-				System.out.println;
+				System.out.println();
 			}
 			i++;
 		}
@@ -470,7 +487,7 @@ public class VirtualZoo {
 	* @return total_makanan
 	*/
 	public int getTotalMakanan() {
-		int totalMakanan;
+		int totalMakanan = 0;
 		for(int i = 0; i < nCage; i++) {
 			
 			totalMakanan = totalMakanan + cages[i].getTotalMakanan();
@@ -484,8 +501,10 @@ public class VirtualZoo {
 	* Mendapatkan cell yang merupakan entrance random dari seluruh
 	* entrance yang ada
 	*/
-	public Cell[] getEntrance() {
-		int rn = rand() % nEntrance;
+	public Cell getEntrance() {
+		//int rn = rand() % nEntrance;
+		int rn = ThreadLocalRandom.current().nextInt(nEntrance);
+			
 		return listEntrance[rn];
 	}
 
@@ -510,7 +529,7 @@ public class VirtualZoo {
 
 		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
 
-			if (matriksCell.getCell(x,y).getTipe() == "road" || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+			if (matriksCell.getCell(x,y).getTipeCell() == "road" || matriksCell.getCell(x,y).getTipeCell() == "exit" ) {
 
 			// cout << "masuk kanan" << endl;
 			
@@ -527,7 +546,7 @@ public class VirtualZoo {
 
 		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
 			// cout << "masuk atas" << endl;
-			if (matriksCell.getCell(x,y).getTipe() == "road" || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+			if (matriksCell.getCell(x,y).getTipeCell() == "road" || matriksCell.getCell(x,y).getTipeCell() == "exit" ) {
 				if (!isVisited(matriksCell.getCell(x,y))) {
 					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
 					nAvailable++;
@@ -541,7 +560,7 @@ public class VirtualZoo {
 
 		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
 			// cout << "masuk kiri" << endl;
-			if (matriksCell.getCell(x,y).getTipe() == "road"  || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+			if (matriksCell.getCell(x,y).getTipeCell() == "road"  || matriksCell.getCell(x,y).getTipeCell() == "exit" ) {
 				if (!isVisited(matriksCell.getCell(x,y))) {
 					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
 					nAvailable++;
@@ -555,7 +574,7 @@ public class VirtualZoo {
 
 		if (x>=0 && y>=0 && x<=xMax && y<=yMax) {
 			// cout << "masuk bawah" << endl;
-			if (matriksCell.getCell(x,y).getTipe() == "road"  || matriksCell.getCell(x,y).getTipe() == "exit" ) {
+			if (matriksCell.getCell(x,y).getTipeCell() == "road"  || matriksCell.getCell(x,y).getTipeCell() == "exit" ) {
 				if (!isVisited(matriksCell.getCell(x,y))) {
 					cellAvailable[nAvailable] = matriksCell.getCell(x,y);
 					nAvailable++;
@@ -572,7 +591,8 @@ public class VirtualZoo {
 			person.setPosition(xNext, yNext);
 		} else {
 			// cout << "ada jalan " << nAvailable << endl;
-			int rn = rand() % nAvailable;
+			//int rn = rand() % nAvailable;
+			int rn = ThreadLocalRandom.current().nextInt(nAvailable);
 			int xNext = cellAvailable[rn].getX();
 			int yNext = cellAvailable[rn].getY();
 			listVisited[nVisited] = cellAvailable[rn];
@@ -591,7 +611,7 @@ public class VirtualZoo {
 	* @return true Jika cel pernah dikunjungi,
 	*		  false Jika cel belum pernah dikunjungi
 	*/
-	public boolean isVisited(Cell* cel) {
+	public boolean isVisited(Cell cel) {
 		boolean visited = false;
 		int i =0;
 		while (i < nVisited && !visited) {
@@ -614,22 +634,31 @@ public class VirtualZoo {
 		int x = person.getX();
 		int y = person.getY();
 		boolean endOfTour = false;
-		if (matriksCell.getCell(x,y).getTipe() == "exit") {
+		if (matriksCell.getCell(x,y).getTipeCell() == "exit") {
 			endOfTour = true;
 		}
 		return endOfTour;
 	}
 
+	public static void clearScreen() {  
+		System.out.print("\033[H\033[2J");  
+		System.out.flush();  
+	}  
+   
 	/**
 	* Melakukan tour zoo. Menggerakkan visitor dari entrance
 	* sampai ke exit
 	*/
 	public void tour() {
-		Runtime.getRuntime().exec("clear");
-		PrintVirtualZoo();
+		clearScreen();
+		printVirtualZoo();
 		do {
-			sleep(1);
-			Runtime.getRuntime().exec("clear");
+			try {
+				Thread.sleep(1000);
+			} catch(InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			clearScreen();
 			moveAnimal();
 			moveVisitor();
 			printVirtualZoo();
@@ -639,4 +668,5 @@ public class VirtualZoo {
 
 
 }
+
 

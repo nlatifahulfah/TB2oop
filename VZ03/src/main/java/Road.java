@@ -30,7 +30,8 @@ public class Road extends Cell implements Facility {
      * mengembalikan simbol Cell dari road
      * @return char simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

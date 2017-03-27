@@ -9,10 +9,13 @@ public class Cell {
     private int x;
     private int y;
     private String tipeCell;
+    private char simbol;
     
-    public void Cell(int x, int y, char s) {
+    public Cell(int x, int y, char s) {
         this.x = x;
         this.y = y;
+        simbol = s;
+        
         
         if (s=='w'){
             tipeCell = "water";
@@ -40,7 +43,7 @@ public class Cell {
         }
     }
     
-    public String getTipe(char s){
+    public String getTipe(){
         return tipeCell;
     }
     
@@ -60,4 +63,7 @@ public class Cell {
         this.y = y;
     }
     
+    public char render(){
+		return simbol;
+	}
 }

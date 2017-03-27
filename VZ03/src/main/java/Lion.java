@@ -5,7 +5,7 @@
  *
  * @author Nur Latifah Ulfah - 13514015
  */
-public class Lion extends Animal implements LandHabitat, Karnivora{
+public class Lion extends Animal implements LandAnimal, Karnivora{
 	private final String TIPEANIMAL = "lion";
 	private final char SIMBOL = 'l';
 	private int bobot;

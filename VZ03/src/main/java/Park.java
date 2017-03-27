@@ -1,9 +1,6 @@
 // File : Park.java
 // PIC  : Letivany Aldina - 13514067
-<<<<<<< HEAD
 
-=======
->>>>>>> 547e9d1ee4f245a7dd9e3a1783f653021786f6b2
 /**
  *
  * @author Letivany Aldina - 13514067
@@ -32,7 +29,8 @@ public class Park extends Cell implements Facility {
      * mengembalikan simbol tipe Cell
      * @return char simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

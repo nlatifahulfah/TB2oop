@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Elephant extends Animal implements LandHabitat, Herbivora {
+public class Elephant extends Animal implements LandAnimal, Herbivora {
 	private final String TIPEANIMAL = "elephant";
 	private final char SIMBOL = 'e';
 	private int bobot;

@@ -5,7 +5,7 @@
  *
  * @author Nur Latifah Ulfah - 13514015
  */
-public class Dog extends Animal implements LandHabitat, Karnivora{
+public class Dog extends Animal implements LandAnimal, Karnivora{
 	private final String TIPEANIMAL = "dog";
 	private final char SIMBOL = 'd';
 	private int bobot;

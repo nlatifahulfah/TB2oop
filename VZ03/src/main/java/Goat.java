@@ -5,7 +5,7 @@
  *
  * @author Nur Latifah Ulfah - 13514015
  */
-public class Goat extends Animal implements LandHabitat, Herbivora{
+public class Goat extends Animal implements LandAnimal, Herbivora{
 	private final String TIPEANIMAL = "goat";
 	private final char SIMBOL = 'g';
 	private int bobot;

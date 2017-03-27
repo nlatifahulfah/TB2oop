@@ -31,7 +31,8 @@ public class Entrance extends Cell implements Facility {
      * mengembalikan simbol tipe Cell
      * @return char simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

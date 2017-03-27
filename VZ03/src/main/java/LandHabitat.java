@@ -32,7 +32,8 @@ public class LandHabitat extends Cell implements Habitat {
      * mengembalikan simbol Cell
      * @return simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

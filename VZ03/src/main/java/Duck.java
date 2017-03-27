@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Duck extends Animal implements WaterHabitat, Omnivora {
+public class Duck extends Animal implements WaterAnimal, Omnivora {
 	private final String TIPEANIMAL = "duck";
 	private final char SIMBOL = 'k';
 	private int bobot;

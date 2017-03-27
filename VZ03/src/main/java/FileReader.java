@@ -47,7 +47,7 @@ public class FileReader {
 	private List<List<Character>> maps = new ArrayList<List<Character>>(); /**< peta zoo */
 	private int nCage; /**< jumlah Cage yang akan dibangun */
 	private List<Character> listCageSimbol = new ArrayList<Character>(); /**< listCageSimbol adalah list karakter simbol Cage */
-	private List<String> listCageType = new ArrayList<String>();  /**< listCageType adalah list tipe habitat Cage */
+	private List<String> listCagetype = new ArrayList<String>();  /**< listCagetype adalah list tipe habitat Cage */
 	private List<Integer> listNCageArea = new ArrayList<Integer>();  /**< listNCageArea adalah jumlah Cell yang akan dibangun pada masing2 Cage */
 	private List<Integer> listNAnimal = new ArrayList<Integer>();  /**< listNAnimal adalah jumlah animal yang akan diciptakan pada masing2 Cage*/
 	private List<List<Integer>> listPos = new ArrayList<List<Integer>>(); /**< listPos adalah list dari posisi Cage yang akan dibangun */
@@ -57,7 +57,7 @@ public class FileReader {
 	*
 	* @param fileName Nama file eksternal yang akan dibaca
 	*/
-	public void FileReader(String fileName) {
+	public FileReader(String fileName) {
 		URL path = ClassLoader.getSystemResource(fileName);
 		file = new File(path.toString());
 		try (Scanner sc = new Scanner(file);) {
@@ -99,16 +99,16 @@ public class FileReader {
 
 		nCage = sc.nextInt();
 		char listCageSimbol[] = new char[nCage];
-		String listCageType[] = new String[nCage];
+		String listCagetype[] = new String[nCage];
 		int listNCageArea[] = new int[nCage];
 		for(int i=0; i<nCage; i++){
 			listCageSimbol[i] = sc.next().charAt(0);
-			listCageType[i] = sc.next();
+			listCagetype[i] = sc.next();
 			listNCageArea[i] = sc.nextInt();
 			sc.nextLine();
 		}
 
-		// cout <<"sum area = "<< GetSumCageArea() << endl;
+		// cout <<"sum area = "<< getSumCageArea() << endl;
 		int listNAnimal[] = new int[nCage];
 		int listPos[][] = new int[getSumCageArea()][2];
 		
@@ -131,7 +131,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan total nilai cageArea
+	* getter. Mendapatkan total nilai cageArea
 	*
 	* @return sum
 	*/
@@ -144,7 +144,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan nilai baris area Zoo
+	* getter. Mendapatkan nilai baris area Zoo
 	*
 	* @return nbrs
 	*/
@@ -153,7 +153,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan nilai kolom area Zoo
+	* getter. Mendapatkan nilai kolom area Zoo
 	*
 	* @return nkol
 	*/
@@ -162,7 +162,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan jumlah tipe Cell yang ada
+	* getter. Mendapatkan jumlah tipe Cell yang ada
 	*
 	* @return nCellType
 	*/
@@ -171,7 +171,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan jumlah Cage yang akan dibuat
+	* getter. Mendapatkan jumlah Cage yang akan dibuat
 	*
 	* @return nCage
 	*/
@@ -181,7 +181,7 @@ public class FileReader {
 
 
 	/**
-	* Getter. Mendapatkan tipe Cell ke i
+	* getter. Mendapatkan tipe Cell ke i
 	*
 	* @param i Index tipe Cell yang akan dikembalikan
 	* @return listCellType[i]
@@ -191,7 +191,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan simbol Cell ke i
+	* getter. Mendapatkan simbol Cell ke i
 	* 
 	* @param i Index simbol Cell yang akan dikembalikan
 	* @return listCellSimbol[i]
@@ -201,7 +201,7 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan simbol Cell pada maps[i][j]
+	* getter. Mendapatkan simbol Cell pada maps[i][j]
 	*
 	* @param i Index baris maps
 	* @param j Indeks kolom maps
@@ -212,57 +212,57 @@ public class FileReader {
 	}
 
 	/**
-	* Getter. Mendapatkan tipe Cage ke i
+	* getter. Mendapatkan tipe Cage ke i
 	*
 	* @param i Index tipe Cage yang akan dikembalikan
-	* @return listCageType[i]
+	* @return listCagetype[i]
 	*/
 	public String getCageType(int i) {
-		return listCageType.get(i);
+		return listCagetype.get(i);
 	}
 
 	/**
-	* @brief Getter. Mendapatkan simbol Cage ke i
+	* @brief getter. Mendapatkan simbol Cage ke i
 	* @param i Index simbol Cage yang akan dikembalikan
 	* @return listCageSimbol[i]
 	*/
-	public char GetCageSimbol(int i) {
+	public char getCageSimbol(int i) {
 		return listCageSimbol.get(i);
 	}
 
 	/**
-	* @brief Getter. Mendapatkan area Cage ke i
+	* @brief getter. Mendapatkan area Cage ke i
 	* @param i Index area Cage yang akan dikembalikan
 	* @return listNCageArea[i]
 	*/
-	public int GetNCageArea(int i) {
+	public int getNCageArea(int i) {
 		return listNAnimal.get(i);
 	}
 
 	/**
-	* @brief Getter. Mendapatkan jumlah Animal ke i
+	* @brief getter. Mendapatkan jumlah Animal ke i
 	* @param i Index jumlah Animal yang akan dikembalikan
 	* @return listNAnimal[i]
 	*/
-	public int GetNAnimal(int i) {
+	public int getNAnimal(int i) {
 		return listNAnimal.get(i);
 	}
 
 	/**
-	* @brief Getter. Mendapatkan posisi X Cell Cage ke i
+	* @brief getter. Mendapatkan posisi X Cell Cage ke i
 	* @param i Index posisi X Cell Cage yang akan dikembalikan
 	* @return listPos[i][0]
 	*/
-	public int GetPosX(int i) {
+	public int getPosX(int i) {
 		return listPos.get(i).get(0);
 	}
 
 	/**
-	* @brief Getter. Mendapatkan posisi Y Cell Cage ke i
+	* @brief getter. Mendapatkan posisi Y Cell Cage ke i
 	* @param i Index posisi Y Cell Cage yang akan dikembalikan
 	* @return listPos[i][1]
 	*/
-	public int GetPosY(int i) {
+	public int getPosY(int i) {
 		return listPos.get(i).get(1);
 	}
 }

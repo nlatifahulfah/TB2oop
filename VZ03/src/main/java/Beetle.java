@@ -5,7 +5,7 @@
  *
  * @author  Hasna Nur Karimah - 13514106
  */
-public class Bird extends Animal implements FlyingAnimal, Herbivora {
+public class Beetle extends Animal implements FlyingAnimal, Herbivora {
 	private final String TIPEANIMAL = "beetle";
 	private final char SIMBOL = 'q';
 	private int bobot;

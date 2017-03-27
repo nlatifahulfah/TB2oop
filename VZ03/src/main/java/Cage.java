@@ -148,9 +148,9 @@ public class Cage implements Renderable {
 	* @return true jika posisi c belum ditempati animal,
 	*		      false jika sebaliknya
 	*/
-	public bool isPositionEmpty(Cell c) {
+	public boolean isPositionEmpty(Cell c) {
 		int i=0;
-		bool empty = true;
+		boolean empty = true;
 		while (i<nAnimal && empty){
 			if ((animals[i].getX() == c.getX()) && (animals[i].getY() == c.getY())) {
 				empty = false;
@@ -164,9 +164,9 @@ public class Cage implements Renderable {
 		return empty;
 	}
 
-	public bool isPositionInCage(int x, int y) {
+	public boolean isPositionInCage(int x, int y) {
 		int i = 0;
-		bool found = false;
+		boolean found = false;
 		while (i < nArea && !found) {
 			if (listOfCagePosition[i].getX() == x && listOfCagePosition[i].getY() == y) {
 				found = true;

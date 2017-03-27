@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Cow extends Animal implements LandHabitat, Herbivora {
+public class Cow extends Animal implements LandAnimal, Herbivora {
 	private final String TIPEANIMAL = "cow";
 	private final char SIMBOL = 'w';
 	private int bobot;

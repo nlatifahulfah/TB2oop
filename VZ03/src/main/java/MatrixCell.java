@@ -7,8 +7,8 @@
  */
 public class MatrixCell {
 	private Cell matrix[][];
-	private int N_BRS;
-	private int N_KOL;
+	private int nBrs;
+	private int nKol;
 
 	/**
 	* Ctor. Menginisiasi matriks 
@@ -16,10 +16,10 @@ public class MatrixCell {
 	* @param brs Jumlah baris pada matrix
 	* @param kol Jumlah kolom pada matrix
 	*/
-	public void MatrixCell(int brs, int kol) {
-		N_BRS = brs;
-		N_KOL = kol;
-		Cell matrix[][] = new Cell [N_BRS][N_KOL];
+	public MatrixCell(int brs, int kol) {
+		nBrs = brs;
+		nKol = kol;
+		Cell matrix[][] = new Cell [nBrs][nKol];
 	}
 
 	/**
@@ -46,18 +46,18 @@ public class MatrixCell {
 	/**
 	* Getter jumlah baris matrix
 	*
-	* @return N_BRS
+	* @return nBrs
 	*/	
-	public int getNBRS() {
-		return N_BRS;
+	public int getNBrs() {
+		return nBrs;
 	}
 
 	/**
 	* Getter jumlah kolom matrix
 	*
-	* @return N_KOL
+	* @return nKol
 	*/	
-	public int getNKOL() {
-		return N_KOL;
+	public int getNKol() {
+		return nKol;
 	}
 }

@@ -25,7 +25,8 @@ public class WaterHabitat extends Cell implements Habitat {
      * mengembalikan simbol Cell
      * @return char simbol Cell
      */
-    public char getSimbol(){
+    @Override
+    public char render(){
         return simbol;
     }
 }

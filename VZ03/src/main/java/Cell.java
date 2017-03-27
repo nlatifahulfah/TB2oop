@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-// File : Cage.java
-// PIC : Letivany Aldina - 13514067
-=======
 // File : Cell.java
 // PIC  : Letivany Aldina - 13514067
->>>>>>> 547e9d1ee4f245a7dd9e3a1783f653021786f6b2
 
 /**
  *

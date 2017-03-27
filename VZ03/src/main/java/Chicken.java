@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Chicken extends Animal implements LandHabitat, Omnivora {
+public class Chicken extends Animal implements LandAnimal, Omnivora {
 	private final String TIPEANIMAL = "chicken";
 	private final char SIMBOL = 'n';
 	private int bobot;
