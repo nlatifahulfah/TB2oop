@@ -25,6 +25,10 @@ public class VirtualZoo {
 	private int currentVisited;
 	private int nVisited;
 	
+	/**
+	* Constructor
+	* @param input_file Nama file input yang berisi konfigurasi Zoo
+	*/
 	public VirtualZoo(string inputFile) {
 		FileReader data(inputFile);
 		
@@ -248,28 +252,36 @@ public class VirtualZoo {
 		currentVisited = -1;
 	}
 
-		
-		public void addZooToMaps() {
-			for(int i=0; i<matriksCell.getNBrs(); i++){
+	/**
+	 * Menambahkan simbol2 dari lingkungan Zoo ke Maps
+	 */		
+	public void addZooToMaps() {
+		for(int i=0; i<matriksCell.getNBrs(); i++){
 			for(int j=0; j<matriksCell.getNKol(); j++){
 				maps.setVal(i,j,matriksCell.getCell(i,j).render());
 			}
 		}
-		}
-		
-		public void addCagetoMaps() {
-		int x,y;
-		for(int i=0; i<nCage; i++) {
-			for(int j=0; j<cages[i].getNArea(); j++) {
-				// cout << cages[i].getCagePosition(j) << endl;
-				x = cages[i].getCagePosition(j).getX();
-				y = cages[i].getCagePosition(j).getY();
-				maps.setVal(x,y,cages[i].render());
+	}
+	
+	/**
+	* Menambahkan simbol2 dari Cage ke Maps
+	*/	
+	public void addCagetoMaps() {
+	int x,y;
+	for(int i=0; i<nCage; i++) {
+		for(int j=0; j<cages[i].getNArea(); j++) {
+			// cout << cages[i].getCagePosition(j) << endl;
+			x = cages[i].getCagePosition(j).getX();
+			y = cages[i].getCagePosition(j).getY();
+			maps.setVal(x,y,cages[i].render());
 			}
 		}
 	}
-
-		public void addAnimalToMaps() {
+	
+	/**
+	* Menambahkan simbol2 dari Animal ke Maps
+	*/
+	public void addAnimalToMaps() {
 		int x,y,z;
 		for(int i=0; i<nCage; i++) {
 			for(int j=0; j<cages[i].getNAnimal(); j++) {
@@ -283,15 +295,27 @@ public class VirtualZoo {
 		}
 	}
 
-		public void addVisitorToMaps() {
+	/**
+	* Menambahkan simbol dari Visitor ke Maps
+	*/
+	public void addVisitorToMaps() {
 		int x = person.getX();
 		int y = person.getY();
 		int z = person.getSimbol();
 		maps.setVal(x,y,z);
 	}
 
-
-		public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
+	/**
+	* Menentukan apakah suatu area masih dalam 
+	* jangkauan area Virtual Zoo 
+	* @param kiri Indeks batas kiri Virtual Zoo
+	* @param atas Indeks batas atas Virtual Zoo
+	* @param kanan Indeks batas kanan Virtual Zoo
+	* @param bawah Indeks batas bawah Virtual Zoo
+	* @return true jika masih dalam jangkauan,
+			  false jika diluar jangkauan
+	*/
+	public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
 		int xMax = matriksCell.getNBrs();
 		int yMax = matriksCell.getNKol();
 		if (atas>=0 && kiri>=0 && bawah<=xMax && kanan<=yMax) {
@@ -301,6 +325,14 @@ public class VirtualZoo {
 		}
 	}
 
+	/**
+	* Menentukan apakah suatu titik masih di dalam 
+	*  area Virtual Zoo 
+	* @param x 
+	* @param y
+	* @return true jika masih dalam jangkauan,
+	*		  false jika diluar jangkauan
+	*/
 	public boolean isInRage(int x, int y) {
 		int xMax = matriksCell.getNBrs();
 		int yMax = matriksCell.getNKol();
@@ -311,6 +343,9 @@ public class VirtualZoo {
 		}
 	}
 
+	/**
+	* Mencetak seluruh peta dan komponen Virtual Zoo
+	*/
 	public void printVirtualZoo() {
 		addZooToMaps();
 		addCagetoMaps();
@@ -318,6 +353,15 @@ public class VirtualZoo {
 		addVisitorToMaps();
 		maps.printView();
 	}
+	
+	/**
+	* Mencetak peta dan komponen Virtual Zoo pada
+	* area tertentu
+	* @param kiri Indeks batas kiri Virtual Zoo
+	* @param atas Indeks batas atas Virtual Zoo
+	* @param kanan Indeks batas kanan Virtual Zoo
+	* @param bawah Indeks batas bawah Virtual Zoo
+	*/
 	public void printVirtualZoo(int kiri,int atas,int kanan,int bawah) {
 		addZooToMaps();
 		addCagetoMaps();
@@ -326,6 +370,9 @@ public class VirtualZoo {
 		maps.printView(kiri,atas,kanan,bawah);
 	}
 
+	/**
+	* Memindahkan posisi Animal pada Virtual Zoo
+	*/
 	public void moveAnimal() {
 		for(int i = 0; i < nCage; i++) {
 			for(int j = 0; j < cages[i].getNAnimal(); j++) {
@@ -350,6 +397,9 @@ public class VirtualZoo {
 		}
 	}
 
+	/**
+	* Mencetak seluruh interaksi yang dialami visitor
+	*/
 	public void interact() {
 		int xNow = person.getX();
 		int yNow = person.getY();
@@ -392,6 +442,12 @@ public class VirtualZoo {
 		
 	}
 
+	/**
+	* Mencetak interaksi yang dialami visitor oleh Cage
+	* yang berada di koordinat (x,y)
+	* @param x Posisi x dari Cage
+	* @param y Posisi y dari Cage
+	*/
 	public void printInteraction(int x, int y) {
 		int i = 0;
 		boolean found = false;
@@ -409,6 +465,10 @@ public class VirtualZoo {
 
 	}
 
+	/**
+	* mendapatkan total makanan yang diperlukan Virtual Zoo
+	* @return total_makanan
+	*/
 	public int getTotalMakanan() {
 		int totalMakanan;
 		for(int i = 0; i < nCage; i++) {
@@ -420,11 +480,18 @@ public class VirtualZoo {
 		return totalMakanan;
 	}
 
+	/**
+	* Mendapatkan cell yang merupakan entrance random dari seluruh
+	* entrance yang ada
+	*/
 	public Cell[] getEntrance() {
 		int rn = rand() % nEntrance;
 		return listEntrance[rn];
 	}
 
+	/**
+	* Memindahkan posisi visitor ke road terdekat
+	*/
 	public void moveVisitor() {
 		int xNow = person.getX();
 		int yNow = person.getY();
@@ -517,6 +584,13 @@ public class VirtualZoo {
 
 	}
 
+	/**
+	* Menentukan suatu cell apakah sudah pernah dikunjungi
+	* atau belum
+	* @param cel Cell yang dites
+	* @return true Jika cel pernah dikunjungi,
+	*		  false Jika cel belum pernah dikunjungi
+	*/
 	public boolean isVisited(Cell* cel) {
 		boolean visited = false;
 		int i =0;
@@ -530,6 +604,12 @@ public class VirtualZoo {
 		return visited;
 	}
 
+	/**
+	* Menentukan apakah posisi visitor berada pada
+	* cell exit
+	* @return true Jika posisi visitor berada pada cell exit,
+	*		  false Jika posisi visitor tidak berada pada cell exit
+	*/
 	public boolean isEndOfTour() {
 		int x = person.getX();
 		int y = person.getY();
@@ -540,12 +620,16 @@ public class VirtualZoo {
 		return endOfTour;
 	}
 
+	/**
+	* Melakukan tour zoo. Menggerakkan visitor dari entrance
+	* sampai ke exit
+	*/
 	public void tour() {
-		system("clear");
+		Runtime.getRuntime().exec("clear");
 		PrintVirtualZoo();
 		do {
 			sleep(1);
-			system("clear");
+			Runtime.getRuntime().exec("clear");
 			moveAnimal();
 			moveVisitor();
 			printVirtualZoo();
@@ -555,3 +639,4 @@ public class VirtualZoo {
 
 
 }
+
