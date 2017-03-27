@@ -328,7 +328,7 @@ public class VirtualZoo {
 	* @param kanan Indeks batas kanan Virtual Zoo
 	* @param bawah Indeks batas bawah Virtual Zoo
 	* @return true jika masih dalam jangkauan,
-			  false jika diluar jangkauan
+	*		  false jika diluar jangkauan
 	*/
 	public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
 		int xMax = matriksCell.getNBrs();

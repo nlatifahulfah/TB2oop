@@ -16,6 +16,13 @@ public class Animal {
 	private String tipeMakanan;
 	private String musuh[];
 
+	/**
+	* Konstruktor Animal.
+	*
+	* @param x Posisi x Animal ketika diciptakan
+	* @param y Posisi y Animal ketika diciptakan
+	* @param tipe Tipe hewan / nama spesies
+	*/
 	public Animal(int x, int y, String tipe) {
 		tipeAnimal = tipe;
 		this.x = x;
@@ -181,11 +188,21 @@ public class Animal {
 			musuh[1] = "eagle";
 		}
 	}
-		
+
+	/**
+	* Set posisi x dari Animal.
+	*
+	* @param x Posisi x Animal yang diset
+	*/
 	public void setX(int x) {
 		this.x = x;
 	}
 
+	/**
+	* Set posisi y dari Animal.
+	*
+	* @param y Posisi y Animal yang diset
+	*/
 	public void setY(int y) {
 		this.y = y;
 	}
@@ -194,30 +211,75 @@ public class Animal {
 		bobot++;
 	}
 
+	/**
+	* Get posisi x dari Animal.
+	*
+	* @return Posisi x Animal saat ini
+	*/
 	public int getX() {
 		return x;
 	}
 
+	/**
+	* Get posisi y dari Animal.
+	*
+	* @return Posisi y Animal saat ini
+	*/
 	public int getY() {
 		return y;
 	}
 
+	/**
+	* Mendapatkan nilai bobot dari Animal
+	*
+	* @return bobot saat ini
+	*/
 	public int getBobot() {
 		return bobot;
 	}
 
+	/**
+	* Mendapatkan nHabitat dari suatu Animal
+	*
+	* return nHabitat
+	*/
+	public int getNHabitat() {
+		return nHabitat;
+	}
+
+	/**
+	* Mendapatkan tipeHabitat dari Animal
+	* 
+	* @return tipeHabitat
+	*/
 	public String getTipeHabitat(int i) {
 		return tipeHabitat[i];
 	}
 
+	/**
+	* Mendapatkan tipeAnimal / nama spesies dari Animal
+	* 
+	* @return tipeHabitat
+	*/
 	public String getTipeAnimal() {
 		return tipeAnimal;
 	}
 
+	/**
+	* Mendapatkan simbol dari Animal
+	*
+	* @return simbol
+	*/
 	public char getSimbol() {
 		return simbol;
 	}
-			
+
+	/**
+	* Mendapatkan reaksi Animal saat berinteraksi
+	* dengan pengunjung
+	*
+	* @return Interaksi yang diberikan Animal
+	*/
 	public String interact() {
 		String ret="";
 		if (tipeAnimal=="frog") {
@@ -266,6 +328,13 @@ public class Animal {
 		return ret;
 	}
 
+	/**
+	* Mendapatkan musuh suatu Animal
+	* Yaitu binatang yang tidak dapat diletakkan satu kandang dengan
+	* tipe animal tersebut
+	*
+	* @return musuh[i]
+	*/
 	public String getMusuh(int i) {
 		return musuh[i];
 	}
