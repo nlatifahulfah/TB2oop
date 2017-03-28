@@ -22,13 +22,17 @@ Animal:
 	$(MKBIN)
 	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Animal.java
 
-Cage: Animal
+Cage: Animal Cell
 	$(MKBIN)
 	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Cage.java
 
-Cell: 
+FileReader: 
 	$(MKBIN)
 	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)FileReader.java
+
+Cell: 
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Cell.java
 
 MatrixCell: Cell
 	$(MKBIN)
@@ -50,16 +54,55 @@ AnimalTest: Animal
 	$(MKBIN)
 	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)AnimalTest.java
 
+CageTest: Cage
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)CageTest.java
+
+CellTest: Cell
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)CellTest.java
+
+VisitorTest: Visitor
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)VisitorTest.java
+
+ViewTest: View
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)ViewTest.java
+
+MatrixCellTest: MatrixCell
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)MatrixCellTest.java
+
+FileReaderTest: FileReader
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)FileReaderTest.java
+
+testAnimal:
+	$(JVM) $(CP) org.junit.runner.JUnitCore AnimalTest
+
+testCage:
+	$(JVM) $(CP) org.junit.runner.JUnitCore CageTest
+
+testCell:
+	$(JVM) $(CP) org.junit.runner.JUnitCore CellTest
+
+testVisitor:
+	$(JVM) $(CP) org.junit.runner.JUnitCore VisitorTest
+
+testView:
+	$(JVM) $(CP) org.junit.runner.JUnitCore ViewTest
+
+testMatrixCell:
+	$(JVM) $(CP) org.junit.runner.JUnitCore MatrixCellTest
+
+testFileReader:
+	$(JVM) $(CP) org.junit.runner.JUnitCore FileReaderTest
+
 clean:
 	rm -rf $(TARGET)
 
 run:
-	$(JVM) $(CP) $(MAIN)
-
-run_test: 
 	$(JVM) $(CP) Driver
-
-testAnimal:
-	$(JVM) $(CP) org.junit.runner.JUnitCore AnimalTest
 
 .PHONY: all test clean run run_test

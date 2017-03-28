@@ -54,12 +54,13 @@ public class FileReader {
 	* @param fileName Nama file eksternal yang akan dibaca
 	*/
 	public FileReader(String fileName) {
-		URL path = ClassLoader.getSystemResource(fileName);
-		file = new File(path.toString());
-		try (Scanner sc = new Scanner(file);) {
+		// URL path = ClassLoader.getSystemResource(fileName);
+		file = new File(fileName);
+		try {
+			sc = new Scanner(file);
 			read();
 		} catch (FileNotFoundException e) {
-			;
+			e.printStackTrace();
 		}
 	}
 
@@ -70,56 +71,53 @@ public class FileReader {
 		nBrs = sc.nextInt();
 		nKol = sc.nextInt();
 		sc.nextLine();
-		// cout<<nBrs<<" "<< nKol<<endl;
 
 		nCellType = sc.nextInt();
 		sc.nextLine();
-		String listCellType[] = new String[nCellType];
-		char listCellSimbol[] = new char[nCellType];
+		// String listCellType[] = new String[nCellType];
+		// char listCellSimbol[] = new char[nCellType];
 		for(int i=0; i<nCellType; i++) {
-			listCellSimbol[i] = sc.next().charAt(0);
-			listCellType[i] = sc.next();
+			listCellSimbol.add(i, sc.next().charAt(0));
+			listCellType.add(i, sc.next());
 			sc.nextLine();
-			// cout << listCellSimbol[i] << " " << listCellType[i] <<endl;
 		}
 
-		char maps[][] = new char[nBrs][nKol];
+		// char maps[][] = new char[nBrs][nKol];
 		for(int i=0; i<nBrs; i++) {
+			maps.add(i, new ArrayList<Character>(nKol));
+			String temp = sc.next();
 			for (int j=0; j<nKol; j++) {
-				maps[i][j] = sc.next().charAt(0);
-				// cout << maps[i][j];
+				maps.get(i).add(temp.charAt(j));
 			}
 			sc.nextLine();
-			// cout << endl;
 		}
 
 		nCage = sc.nextInt();
-		char listCageSimbol[] = new char[nCage];
-		String listCagetype[] = new String[nCage];
-		int listNCageArea[] = new int[nCage];
+		// char listCageSimbol[] = new char[nCage];
+		// String listCagetype[] = new String[nCage];
+		// int listNCageArea[] = new int[nCage];
 		for(int i=0; i<nCage; i++){
-			listCageSimbol[i] = sc.next().charAt(0);
-			listCagetype[i] = sc.next();
-			listNCageArea[i] = sc.nextInt();
+			listCageSimbol.add(sc.next().charAt(0));
+			listCagetype.add(sc.next());
+			listNCageArea.add(sc.nextInt());
 			sc.nextLine();
 		}
 
-		// cout <<"sum area = "<< getSumCageArea() << endl;
-		int listNAnimal[] = new int[nCage];
-		int listPos[][] = new int[getSumCageArea()][2];
+		// int listNAnimal[] = new int[nCage];
+		// int listPos[][] = new int[getSumCageArea()][2];
 		
 		int c=0;
 		int d=0;
+
 		for(int i=0; i<nCage; i++) {
-			for(int j=0; j<listNCageArea[i]; j++) {
-				listPos[c][0] = sc.nextInt();
-				listPos[c][1] = sc.nextInt();
+			for(int j=0; j<getNCageArea(i); j++) {
+				listPos.add(new ArrayList<Integer>(2));
+				listPos.get(c).add(sc.nextInt());
+				listPos.get(c).add(sc.nextInt());
 				sc.nextLine();
-				// cout << listPos[c][0] <<" "<< listPos[c][1] << endl;
 				c++;
 			}
-			listNAnimal[d] = sc.nextInt();
-			// cout << "nAnimal:" <<listNAnimal[d] <<endl;
+			listNAnimal.add(d,sc.nextInt());
 			d++;
 		}
 
@@ -232,7 +230,7 @@ public class FileReader {
 	* @return listNCageArea[i]
 	*/
 	public int getNCageArea(int i) {
-		return listNAnimal.get(i);
+		return listNCageArea.get(i);
 	}
 
 	/**

@@ -26,7 +26,7 @@ public class Cage {
 		this.tipeHabitat = tipeHabitat;
 
 		listOfCagePosition = new Cell[cageArea];
-		animals = new Animal[getMaxAnimal()];
+		animals = new Animal[30*cageArea/100];
 		nAnimal = 0;
 		nArea = 0;
 	}
@@ -68,6 +68,19 @@ public class Cage {
 	}
 
 	/**
+	* Setter listOfCagePosition.
+	* Menambahkan posisi cell tempat didirikannya cage.
+	*
+	* @param position Posisi cage
+	*/
+	public void addCagePosition(Cell position) {
+		if (nArea < getCageArea()) {
+			listOfCagePosition[nArea] = position;	
+			nArea++;
+		}
+	}
+
+	/**
 	* Getter Cage Position. Mendapatkan listOfCagePosition[i]
 	* 
 	* @param i index listOfCagePosition
@@ -75,6 +88,21 @@ public class Cage {
 	*/
 	public Cell getCagePosition(int i) {
 		return listOfCagePosition[i];
+	}
+
+	/**
+	* Setter animals.
+	* Menambahkan Animal dalam cage jika masih bisa ditambahkan.
+	* Harus dipastikan jumlah Animal tidak melebihi kapasitasnya
+	* 
+	* @param anim Animal yang akan ditambahkan
+	*/
+	public void addAnimal(Animal anim) {
+		if (nAnimal < getMaxAnimal()) {
+			animals[nAnimal] = anim;
+			nAnimal++;
+			
+		}
 	}
 
 	/**
@@ -110,35 +138,6 @@ public class Cage {
 		return total_makanan;
 	}
 
-
-	/**
-	* Setter listOfCagePosition.
-	* Menambahkan posisi cell tempat didirikannya cage.
-	*
-	* @param position Posisi cage
-	*/
-	public void addCagePosition(Cell position) {
-		if (nArea < getCageArea()) {
-			listOfCagePosition[nArea] = position;	
-			nArea++;
-		}
-	}
-
-	/**
-	* Setter animals.
-	* Menambahkan Animal dalam cage jika masih bisa ditambahkan.
-	* Harus dipastikan jumlah Animal tidak melebihi kapasitasnya
-	* 
-	* @param anim Animal yang akan ditambahkan
-	*/
-	public void addAnimal(Animal anim) {
-		if (nAnimal < getMaxAnimal()) {
-			animals[nAnimal] = anim;
-			nAnimal++;
-			
-		}
-	}
-
 	/**
 	* Menentukan apakah suatu cell cage telah ditempati animal 
 	* atau belum
@@ -163,6 +162,14 @@ public class Cage {
 		return empty;
 	}
 
+	/**
+	* Menentukan apakah suatu posisi / titik terdapat di dalam
+	* area Cage yang dibangun
+	* 
+	* @param c Cell
+	* @return true jika posisi c belum ditempati animal,
+	*		      false jika sebaliknya
+	*/
 	public boolean isPositionInCage(int x, int y) {
 		int i = 0;
 		boolean found = false;

@@ -6,64 +6,98 @@
  * @author Letivany Aldina - 13514067
  */
 public class Cell {
-    private int x;
-    private int y;
-    private String tipeCell;
-    private char simbol;
+  private int x;
+  private int y;
+  private String tipeCell;
+  private char simbol;
     
-    public Cell(int x, int y, char s) {
-        this.x = x;
-        this.y = y;
-        simbol = s;
-        
-        
-        if (s=='w'){
-            tipeCell = "water";
-        }
-        else if (s=='l'){
-            tipeCell = "land";
-        }
-        else if (s=='a'){
-            tipeCell = "air";
-        }
-        else if (s=='p'){
-            tipeCell = "park";
-        }
-        else if (s=='r'){
-            tipeCell = "road";
-        }
-        else if (s=='n'){
-            tipeCell = "entrance";
-        }
-        else if (s=='x'){
-            tipeCell = "exit";
-        }
-        else if (s=='t'){
-            tipeCell = "restourant";
-        }
+  /**
+  * konstruktor sebuah Cell
+  *
+  * @param x posisi x sebuah Cell
+  * @param y posisi y sebuah Cell
+  * @param s simbol sebuah Cell
+  */
+  public Cell(int x, int y, char s) {
+    this.x = x;
+    this.y = y;
+    simbol = s;
+      
+    if (s=='~'){
+      tipeCell = "water";
     }
-    
-    public String getTipe(){
-        return tipeCell;
+    else if (s=='@'){
+      tipeCell = "land";
     }
-    
-    public int getX(){
-        return x;
+    else if (s=='#'){
+      tipeCell = "air";
     }
-    
-    public int getY(){
-        return y;
+    else if (s=='*'){
+      tipeCell = "park";
     }
-    
-    public void setX(int x){
-        this.x = x;
+    else if (s=='-'){
+      tipeCell = "road";
     }
-    
-    public void setY(int y){
-        this.y = y;
+    else if (s=='\\'){
+      tipeCell = "entrance";
     }
-    
-    public char render(){
-		return simbol;
-	}
+    else if (s=='/'){
+      tipeCell = "exit";
+    }
+    else if (s=='$'){
+      tipeCell = "restourant";
+    }
+  }
+  
+  /**
+  * mendapatkan tipe sebuah Cell
+  * 
+  * @return string tipe Cell
+  */
+  public String getTipe(){
+    return tipeCell;
+  }
+  
+  /**
+  * mendapatkan posisi x
+  * 
+  * @return nilai x
+  */
+  public int getX(){
+    return x;
+  }
+  
+  /**
+  * mendapatkan posisi y
+  * @return nilai y
+  */
+  public int getY(){
+      return y;
+  }
+  
+  /**
+  * set nilai x
+  * @param x nilai x yang diset
+  */
+  public void setX(int x){
+    this.x = x;
+  }
+  
+  /**
+  * set nilai y
+  * @param y nilai y yang diset
+  */
+  public void setY(int y){
+    this.y = y;
+  }
+  
+  /**
+  * Getter SIMBOL.
+  * Mengembalikan nilai SIMBOL.
+  * 
+  * @return SIMBOL
+  */
+  public char render(){
+    return simbol;
+  }
 }
