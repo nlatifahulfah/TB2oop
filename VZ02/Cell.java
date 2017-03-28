@@ -17,28 +17,28 @@ public class Cell {
         simbol = s;
         
         
-        if (s=='w'){
+        if (s=='~'){
             tipeCell = "water";
         }
-        else if (s=='l'){
+        else if (s=='@'){
             tipeCell = "land";
         }
-        else if (s=='a'){
+        else if (s=='#'){
             tipeCell = "air";
         }
-        else if (s=='p'){
+        else if (s=='*'){
             tipeCell = "park";
         }
-        else if (s=='r'){
+        else if (s=='-'){
             tipeCell = "road";
         }
-        else if (s=='n'){
+        else if (s=='\\'){
             tipeCell = "entrance";
         }
-        else if (s=='x'){
+        else if (s=='/'){
             tipeCell = "exit";
         }
-        else if (s=='t'){
+        else if (s=='$'){
             tipeCell = "restourant";
         }
     }

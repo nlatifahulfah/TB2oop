@@ -42,7 +42,7 @@ public class VirtualZoo {
 		matriksCell = new MatrixCell(data.getNBrs(), data.getNKol());
 		// cout << matriksCell.getNBrs() << " ";
 		// cout << matriksCell.getNKol() << endl;
-		
+		System.out.println(data.getNBrs());
 		int max = (matriksCell.getNBrs() + matriksCell.getNKol())*2;
 		listEntrance = new Cell[max];
 		nEntrance = 0;
@@ -64,35 +64,39 @@ public class VirtualZoo {
 						k++;
 				}
 
-
+				System.out.println(data.getCellType(k));
+				System.out.println(i + " " + j);
 				//inisialisasi
-				if (data.getCellType(k)=="airhabitat"){
+				if (data.getCellType(k).equals("airhabitat")){
+					//System.out.println("masuk ah");
 					matriksCell.setCell(new Cell(i,j,c), i, j);
-				}else if (data.getCellType(k)=="waterhabitat"){
+				}else if (data.getCellType(k).equals("waterhabitat")){
 					matriksCell.setCell(new Cell(i,j,c), i, j);
-				}else if (data.getCellType(k)=="landhabitat"){
+				}else if (data.getCellType(k).equals("landhabitat")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
-				}else if (data.getCellType(k)=="road"){
+				}else if (data.getCellType(k).equals("road")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
 					nRoad++;
-				}else if(data.getCellType(k)=="park"){
+				}else if(data.getCellType(k).equals("park")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
-				}else if(data.getCellType(k)=="restourant"){
+				}else if(data.getCellType(k).equals("restourant")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
-				}else if(data.getCellType(k)=="entrance"){
+				}else if(data.getCellType(k).equals("entrance")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
 					listEntrance[nEntrance] = new Cell(i,j, c);
 					nEntrance++;
 					nRoad++;
-				}else if(data.getCellType(k)=="exit"){
+				}else if(data.getCellType(k).equals("exit")){
 					matriksCell.setCell(new Cell(i,j, c), i, j);
 					listExit[nExit] = new Cell(i,j, c);
 					nExit++;
 					nRoad++;
-				}
+				} else System.out.println("ga keset");
+				System.out.print(matriksCell.getCell(i,j).getTipe());
 				
 				// cout << matriksCell.getCell(i,j).render();
 			}
+			System.out.println();
 			// cout <<endl;
 		}
 
@@ -105,6 +109,7 @@ public class VirtualZoo {
 		int n = 0, m =0;
 		for(int i=0; i<nCage; i++){
 			cages[i]= new Cage(data.getCageSimbol(i), data.getCageType(i));
+			System.out.println(data.getCageType(i));
 			// cout << cages[i].render() <<" "<<cages[i].getTipeHabitat()<<endl;
 
 			int x,y;  
@@ -113,6 +118,8 @@ public class VirtualZoo {
 				//posisi pada zoo
 				x = data.getPosX(j);
 				y = data.getPosY(j);
+				System.out.println(x + " " + y);
+				System.out.println(matriksCell.getCell(x,y).getTipe());
 				// cout << x <<" "<< y <<endl;
 				// cek apakah cell memiliki tipe yang sesuai
 				// cout<<matriksCell.getCell(x,y).getTipe() <<" ";

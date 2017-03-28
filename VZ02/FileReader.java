@@ -20,7 +20,7 @@ public class FileReader {
 	private int nBrs; 	/**< nBrs adalah jumlah baris area Zoo, */
 	private int nKol;	/**	nKol adalah jumlah kolom area Zoo */
 	private int nCellType; /**< nCellType adalah jumlah tipe Cell yang ada */
-	private List<String> listCellType = new ArrayList<String>(); 
+	private String[] listCellType; 
 				/**< listCellType adalah list nama tipe Cell:
 								airhabitat
 								waterhabitat
@@ -30,7 +30,7 @@ public class FileReader {
 								restourant 
 								entrance
 								exit*/
-	private List<Character> listCellSimbol = new ArrayList<Character>(); 
+	private char[] listCellSimbol; 
 				/**< listCellSimbol adalah list karakter simbol Cell
 								# airhabitat
 								~ waterhabitat
@@ -40,13 +40,13 @@ public class FileReader {
 								$ restourant 
 								\ entrance
 								/ exit*/
-	private List<List<Character>> maps = new ArrayList<List<Character>>(); /**< peta zoo */
+	private char[][] maps; /**< peta zoo */
 	private int nCage; /**< jumlah Cage yang akan dibangun */
-	private List<Character> listCageSimbol = new ArrayList<Character>(); /**< listCageSimbol adalah list karakter simbol Cage */
-	private List<String> listCagetype = new ArrayList<String>();  /**< listCagetype adalah list tipe habitat Cage */
-	private List<Integer> listNCageArea = new ArrayList<Integer>();  /**< listNCageArea adalah jumlah Cell yang akan dibangun pada masing2 Cage */
-	private List<Integer> listNAnimal = new ArrayList<Integer>();  /**< listNAnimal adalah jumlah animal yang akan diciptakan pada masing2 Cage*/
-	private List<List<Integer>> listPos = new ArrayList<List<Integer>>(); /**< listPos adalah list dari posisi Cage yang akan dibangun */
+	private char[] listCageSimbol; /**< listCageSimbol adalah list karakter simbol Cage */
+	private String[] listCagetype;  /**< listCagetype adalah list tipe habitat Cage */
+	private int[] listNCageArea;  /**< listNCageArea adalah jumlah Cell yang akan dibangun pada masing2 Cage */
+	private int[] listNAnimal;  /**< listNAnimal adalah jumlah animal yang akan diciptakan pada masing2 Cage*/
+	private int[][] listPos; /**< listPos adalah list dari posisi Cage yang akan dibangun */
 
 	/**
 	* Membaca file eksternal 
@@ -54,19 +54,24 @@ public class FileReader {
 	* @param fileName Nama file eksternal yang akan dibaca
 	*/
 	public FileReader(String fileName) {
-		URL path = ClassLoader.getSystemResource(fileName);
-		file = new File(path.toString());
-		try (Scanner sc = new Scanner(file);) {
-			read();
+		System.out.println("making filereader");
+		//URL path = ClassLoader.getSystemResource(fileName);
+		//file = new File(path.toString());
+		file = new File(fileName);
+		try {
+			//read();
+			sc = new Scanner(file);
+			System.out.println("file loaded");
 		} catch (FileNotFoundException e) {
-			;
+			System.out.println(e);
 		}
 	}
 
 	/**
 	* Membaca seluruh file 
 	*/
-	public void read() {		
+	public void read() {
+		System.out.println("reading file");
 		nBrs = sc.nextInt();
 		nKol = sc.nextInt();
 		sc.nextLine();
@@ -74,8 +79,8 @@ public class FileReader {
 
 		nCellType = sc.nextInt();
 		sc.nextLine();
-		String listCellType[] = new String[nCellType];
-		char listCellSimbol[] = new char[nCellType];
+		listCellType = new String[nCellType];
+		listCellSimbol = new char[nCellType];
 		for(int i=0; i<nCellType; i++) {
 			listCellSimbol[i] = sc.next().charAt(0);
 			listCellType[i] = sc.next();
@@ -83,30 +88,38 @@ public class FileReader {
 			// cout << listCellSimbol[i] << " " << listCellType[i] <<endl;
 		}
 
-		char maps[][] = new char[nBrs][nKol];
+		maps = new char[nBrs][nKol];
 		for(int i=0; i<nBrs; i++) {
-			for (int j=0; j<nKol; j++) {
-				maps[i][j] = sc.next().charAt(0);
+			//for (int j=0; j<nKol; j++) {
+				String s = sc.next();
+				char[] c = s.toCharArray();
+				maps[i] = c;
+				
+				for (int j=0;j<nKol;j++) System.out.print(maps[i][j]);
+				System.out.println();
 				// cout << maps[i][j];
-			}
+			//}
 			sc.nextLine();
 			// cout << endl;
 		}
 
 		nCage = sc.nextInt();
-		char listCageSimbol[] = new char[nCage];
-		String listCagetype[] = new String[nCage];
-		int listNCageArea[] = new int[nCage];
+		listCageSimbol = new char[nCage];
+		listCagetype = new String[nCage];
+		listNCageArea = new int[nCage];
 		for(int i=0; i<nCage; i++){
 			listCageSimbol[i] = sc.next().charAt(0);
 			listCagetype[i] = sc.next();
 			listNCageArea[i] = sc.nextInt();
 			sc.nextLine();
+			//System.out.println(listCageSimbol[i]);
+			//System.out.println(listCagetype[i]);
+			//System.out.println(listNCageArea[i]);
 		}
 
 		// cout <<"sum area = "<< getSumCageArea() << endl;
-		int listNAnimal[] = new int[nCage];
-		int listPos[][] = new int[getSumCageArea()][2];
+		listNAnimal = new int[nCage];
+		listPos = new int[getSumCageArea()][2];
 		
 		int c=0;
 		int d=0;
@@ -133,8 +146,8 @@ public class FileReader {
 	*/
 	public int getSumCageArea() {
 		int sum=0;
-		for (int i=0; i<listNCageArea.size(); i++){
-			sum += listNCageArea.get(i);	
+		for (int i=0; i<nCage; i++){
+			sum += listNCageArea[i];	
 		}
 		return sum;
 	}
@@ -183,7 +196,7 @@ public class FileReader {
 	* @return listCellType[i]
 	*/
 	public String getCellType(int i) {
-		return listCellType.get(i);
+		return listCellType[i];
 	}
 
 	/**
@@ -193,7 +206,7 @@ public class FileReader {
 	* @return listCellSimbol[i]
 	*/
 	public char getCellSimbol(int i) {
-		return listCellSimbol.get(i);
+		return listCellSimbol[i];
 	}
 
 	/**
@@ -204,7 +217,7 @@ public class FileReader {
 	* @return maps[i][j]
 	*/
 	public char getMaps(int i, int j) {
-		return maps.get(i).get(j);
+		return maps[i][j];
 	}
 
 	/**
@@ -214,7 +227,7 @@ public class FileReader {
 	* @return listCagetype[i]
 	*/
 	public String getCageType(int i) {
-		return listCagetype.get(i);
+		return listCagetype[i];
 	}
 
 	/**
@@ -223,7 +236,7 @@ public class FileReader {
 	* @return listCageSimbol[i]
 	*/
 	public char getCageSimbol(int i) {
-		return listCageSimbol.get(i);
+		return listCageSimbol[i];
 	}
 
 	/**
@@ -232,7 +245,7 @@ public class FileReader {
 	* @return listNCageArea[i]
 	*/
 	public int getNCageArea(int i) {
-		return listNAnimal.get(i);
+		return listNAnimal[i];
 	}
 
 	/**
@@ -241,7 +254,7 @@ public class FileReader {
 	* @return listNAnimal[i]
 	*/
 	public int getNAnimal(int i) {
-		return listNAnimal.get(i);
+		return listNAnimal[i];
 	}
 
 	/**
@@ -250,7 +263,7 @@ public class FileReader {
 	* @return listPos[i][0]
 	*/
 	public int getPosX(int i) {
-		return listPos.get(i).get(0);
+		return listPos[i][0];
 	}
 
 	/**
@@ -259,6 +272,6 @@ public class FileReader {
 	* @return listPos[i][1]
 	*/
 	public int getPosY(int i) {
-		return listPos.get(i).get(1);
+		return listPos[i][1];
 	}
 }
