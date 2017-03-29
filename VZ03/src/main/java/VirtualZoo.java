@@ -106,7 +106,7 @@ public class VirtualZoo {
 		for(int i=0; i<nCage; i++){
 			cages[i]= new Cage(data.getCageSimbol(i), data.getCageType(i));
 			// cout << cages[i].render() <<" "<<cages[i].getTipeHabitat()<<endl;
-			System.out.println(data.getCageType(i));
+			//System.out.println(data.getCageType(i));
 
 
 			int x,y;  
@@ -132,7 +132,7 @@ public class VirtualZoo {
 		//3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
 		int jumlahAnimal;
 		for(int i=0; i< nCage; i++){
-			System.out.println(cages[i].getMaxAnimal());
+			//System.out.println(cages[i].getMaxAnimal());
       
 			// cout << "max animal:" <<cages[i].getMaxAnimal() <<endl;
 			jumlahAnimal = data.getNAnimal(i);
@@ -142,6 +142,8 @@ public class VirtualZoo {
 			// cout << "n animal:" << jumlahAnimal <<endl;
 			for(int j=0; j<jumlahAnimal; j++){
 				//~ cout <<"yang udah ada:"<< cages[i].getNAnimal() <<endl;
+				//System.out.println(cages[i].getNArea());
+					
 				if (cages[i].getTipeHabitat().equals("land")){
 					//random posisi awal, pastikan masih kosong 
 					//random dari listOfPosisiCage

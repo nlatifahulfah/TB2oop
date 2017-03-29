@@ -7,7 +7,7 @@
  */
 public class Entrance extends Cell implements Facility {
     private final String tipeCell = "entrance";
-    private final char simbol = 'n';
+    private final char simbol = '\\';
     
     /**
      * constructor kelas

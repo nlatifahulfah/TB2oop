@@ -7,7 +7,7 @@
  */
 public class AirHabitat extends Cell implements Habitat {
     private final String tipeCell = "air";
-    private final char simbol = 'a';
+    private final char simbol = '#';
     
     /**
      * Constructor AirHabitat

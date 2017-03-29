@@ -7,7 +7,7 @@
  */
 public class Park extends Cell implements Facility {
     private final String tipeCell = "park";
-    private final char simbol = 'p';
+    private final char simbol = '*';
     /**
      * constructor kelas
      * @param x posisi x Cell

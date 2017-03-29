@@ -7,7 +7,7 @@
  */
 public class Road extends Cell implements Facility {
     private final String tipeCell = "road";
-    private final char simbol = 'r';
+    private final char simbol = '-';
     /**
      * Constructor kelas Road
      * @param x posisi x cell road

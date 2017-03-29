@@ -7,7 +7,7 @@
  */
 public class LandHabitat extends Cell implements Habitat {
     private final String tipeCell = "land";
-    private final char simbol = 'l';
+    private final char simbol = '@';
     
     /**
      * Constructor Land Habitat

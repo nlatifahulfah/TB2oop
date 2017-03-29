@@ -7,7 +7,7 @@
  */
 public class Restourant extends Cell implements Facility {
     private final String tipeCell = "restourant";
-    private final char simbol = 'r';
+    private final char simbol = '$';
     /**
      * constructor kelas
      * @param x posisi x Cell

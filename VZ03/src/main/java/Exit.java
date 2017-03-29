@@ -8,7 +8,7 @@
  */
 public class Exit extends Cell implements Facility {
     private final String tipeCell = "exit";
-    private final char simbol = 'x';
+    private final char simbol = '/';
     
     /**
      * constructor kelas

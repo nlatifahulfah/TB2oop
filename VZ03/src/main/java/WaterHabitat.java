@@ -7,7 +7,7 @@
  */
 public class WaterHabitat extends Cell implements Habitat {
     private final String tipeCell = "water";
-    private final char simbol = 'w';
+    private final char simbol = '~';
     public WaterHabitat(int x, int y){
         super(x,y);
     }

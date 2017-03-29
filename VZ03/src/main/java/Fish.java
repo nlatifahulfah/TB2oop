@@ -5,7 +5,7 @@
  *
  * @author Denita Hanna Widiastuti - 13514008
  */
-public class Fish extends Animal implements WaterHabitat, Omnivora {
+public class Fish extends Animal implements WaterAnimal, Omnivora {
 	private final String TIPEANIMAL = "fish";
 	private final char SIMBOL = 'i';
 	private int bobot;

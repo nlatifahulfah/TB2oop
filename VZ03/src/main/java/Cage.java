@@ -27,7 +27,7 @@ public class Cage implements Renderable {
 		this.tipeHabitat = tipeHabitat;
 
 		listOfCagePosition = new Cell[cageArea];
-		animals = new Animal[getMaxAnimal()];
+		animals = new Animal[30*cageArea/100];
 		nAnimal = 0;
 		nArea = 0;
 	}
@@ -134,6 +134,7 @@ public class Cage implements Renderable {
 	*/
 	public void addAnimal(Animal anim) {
 		if (nAnimal < getMaxAnimal()) {
+			//System.out.println("bisa nambah");
 			animals[nAnimal] = anim;
 			nAnimal++;
 			
