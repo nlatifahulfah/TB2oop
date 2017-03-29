@@ -121,7 +121,7 @@ public class VirtualZoo {
         if((matriksCell.getCell(x,y).getTipe()).equals(cages[i].getTipeHabitat())){
 
           cages[i].addCagePosition(matriksCell.getCell(x,y));
-          System.out.println(matriksCell.getCell(x,y).getTipe());
+          //System.out.println(matriksCell.getCell(x,y).getTipe());
         
           // cout << cages[i].getCagePosition(cages[i].getNArea()-1).getX()<<" ";
           // cout << cages[i].getCagePosition(cages[i].getNArea()-1).getY()<<endl;
@@ -136,7 +136,7 @@ public class VirtualZoo {
     //3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
     int jumlahAnimal;
     for(int i=0; i< nCage; i++) {
-      System.out.println(cages[i].getMaxAnimal());
+      //System.out.println(cages[i].getMaxAnimal());
       // cout << "max animal:" <<cages[i].getMaxAnimal() <<endl;
       jumlahAnimal = data.getNAnimal(i);
       if (jumlahAnimal > cages[i].getMaxAnimal()) {
@@ -207,7 +207,7 @@ public class VirtualZoo {
 
           //nr = rand() % 5 + 1;
           nr = ThreadLocalRandom.current().nextInt(1, 5+1);
-          System.out.println(nr);
+          //System.out.println(nr);
           // cout <<"nr = "<<nr<<endl;
           switch(nr){
             case 1: cages[i].addAnimal(new Animal(x,y,"bird"));break;

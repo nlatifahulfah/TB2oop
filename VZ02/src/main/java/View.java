@@ -16,12 +16,12 @@ public class View {
 	* @param wid Nilai nKol
 	*/
 	public View(int len, int wid) {
-		nBrs = len;
-		nKol = wid;
-		val = new char [nBrs][nKol];
-		for (int i=0; i<nBrs; i++) {
-			for (int j=0; j<nKol; j++)
-				val[i][j] = ' ';
+		nBrs  =  len;
+		nKol  =  wid;
+		val  =  new char [nBrs][nKol];
+		for (int i = 0; i < nBrs; i++) {
+			for (int j = 0; j < nKol; j++)
+				val[i][j]  =  ' ';
 		}
 	}
 
@@ -31,7 +31,7 @@ public class View {
 	* @param j Index kolom nilai yang ingin diubah
 	*/
 	public void setVal(int i, int j, char c) {
-		val[i][j] = c;
+		val[i][j]  =  c;
 	}
 
 	/**
@@ -64,8 +64,8 @@ public class View {
 	* @brief Mencetak seluruh karakter yang ada
 	*/
 	public void printView() {
-		for (int i=0; i<nBrs; i++) {
-			for (int j=0; j<nKol; j++) {
+		for (int i = 0; i < nBrs; i++) {
+			for (int j = 0; j < nKol; j++) {
 				System.out.print(val[i][j]);
 			}
 			System.out.println();
@@ -76,8 +76,8 @@ public class View {
 	* kiri atas sampai kanan bawah
 	*/
 	public void printView(int kiri,int atas,int kanan,int bawah) {
-		for (int i=atas; i<bawah; i++) {
-			for (int j=kiri; j<kanan; j++) {
+		for (int i = atas; i < bawah; i++) {
+			for (int j = kiri; j < kanan; j++) {
 				System.out.print(val[i][j]);
 			}
 			System.out.println();
