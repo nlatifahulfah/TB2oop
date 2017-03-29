@@ -133,6 +133,7 @@ public class Cage {
 	*/
 	public void addAnimal(Animal anim) {
 		if (nAnimal < getMaxAnimal()) {
+			System.out.println("bisa nambah");
 			animals[nAnimal] = anim;
 			nAnimal++;
 			
