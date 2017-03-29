@@ -110,7 +110,7 @@ public class VirtualZoo {
 		int n = 0, m =0;
 		for(int i=0; i<nCage; i++){
 			cages[i]= new Cage(data.getCageSimbol(i), data.getCageType(i));
-			System.out.println(data.getCageType(i));
+			//System.out.println(data.getCageType(i));
 			// cout << cages[i].render() <<" "<<cages[i].getTipeHabitat()<<endl;
 
 			int x,y;  
@@ -119,14 +119,19 @@ public class VirtualZoo {
 				//posisi pada zoo
 				x = data.getPosX(j);
 				y = data.getPosY(j);
-				//System.out.println(x + " " + y);
-				//System.out.println(matriksCell.getCell(x,y).getTipe());
+
 				// cout << x <<" "<< y <<endl;
 				// cek apakah cell memiliki tipe yang sesuai
 				// cout<<matriksCell.getCell(x,y).getTipe() <<" ";
 				// cout<< cages[i].getTipeHabitat()<<endl;
+
 				if(matriksCell.getCell(x,y).getTipe().equals(cages[i].getTipeHabitat())){
+
+				if((matriksCell.getCell(x,y).getTipe()).equals(cages[i].getTipeHabitat())){
+
 					cages[i].addCagePosition(matriksCell.getCell(x,y));
+					System.out.println(matriksCell.getCell(x,y).getTipe());
+				
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getX()<<" ";
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getY()<<endl;
 					//System.out.println(cages[i].getCagePosition(cages[i].getNArea()-1).getX() + " " + cages[i].getCagePosition(cages[i].getNArea()-1).getY());
@@ -135,6 +140,7 @@ public class VirtualZoo {
 			// cout << endl;
 			m = m + data.getNCageArea(i);
 		}
+		printVirtualZoo();
 
 		//3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
 		int jumlahAnimal;
