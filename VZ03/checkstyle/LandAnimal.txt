@@ -1,0 +1,6 @@
+Starting audit...
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/LandAnimal.java:1:8: Line contains a tab character. [FileTabCharacter]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/LandAnimal.java:2:7: Line contains a tab character. [FileTabCharacter]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/LandAnimal.java:4: First sentence of Javadoc is incomplete (period is missing) or not present. [SummaryJavadoc]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/LandAnimal.java:9:1: Line contains a tab character. [FileTabCharacter]
+Audit done.

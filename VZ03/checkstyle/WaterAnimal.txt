@@ -1,0 +1,4 @@
+Starting audit...
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/WaterAnimal.java:4: First sentence of Javadoc is incomplete (period is missing) or not present. [SummaryJavadoc]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/WaterAnimal.java:9:1: Line contains a tab character. [FileTabCharacter]
+Audit done.

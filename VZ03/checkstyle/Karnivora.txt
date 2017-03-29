@@ -1,0 +1,8 @@
+Starting audit...
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:4: First sentence of Javadoc is incomplete (period is missing) or not present. [SummaryJavadoc]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:9: 'method def modifier' have incorrect indentation level 8, expected level should be 2. [Indentation]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:9:1: Line contains a tab character. [FileTabCharacter]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:10: 'METHOD_DEF' should be separated from previous statement. [EmptyLineSeparator]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:10: 'method def modifier' have incorrect indentation level 8, expected level should be 2. [Indentation]
+[WARN] /home/nim_13514106/TB2oop/VZ03/src/main/java/Karnivora.java:10:1: Line contains a tab character. [FileTabCharacter]
+Audit done.
