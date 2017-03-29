@@ -64,8 +64,8 @@ public class VirtualZoo {
 						k++;
 				}
 
-				System.out.println(data.getCellType(k));
-				System.out.println(i + " " + j);
+				//System.out.println(data.getCellType(k));
+				//System.out.println(i + " " + j);
 				//inisialisasi
 				if (data.getCellType(k).equals("airhabitat")){
 					//System.out.println("masuk ah");
@@ -92,11 +92,11 @@ public class VirtualZoo {
 					nExit++;
 					nRoad++;
 				} else System.out.println("ga keset");
-				System.out.print(matriksCell.getCell(i,j).getTipe());
+				//System.out.print(matriksCell.getCell(i,j).getTipe());
 				
 				// cout << matriksCell.getCell(i,j).render();
 			}
-			System.out.println();
+			//System.out.println();
 			// cout <<endl;
 		}
 
@@ -109,7 +109,7 @@ public class VirtualZoo {
 		int n = 0, m =0;
 		for(int i=0; i<nCage; i++){
 			cages[i]= new Cage(data.getCageSimbol(i), data.getCageType(i));
-			System.out.println(data.getCageType(i));
+			//System.out.println(data.getCageType(i));
 			// cout << cages[i].render() <<" "<<cages[i].getTipeHabitat()<<endl;
 
 			int x,y;  
@@ -119,13 +119,14 @@ public class VirtualZoo {
 				x = data.getPosX(j);
 				y = data.getPosY(j);
 				System.out.println(x + " " + y);
-				System.out.println(matriksCell.getCell(x,y).getTipe());
 				// cout << x <<" "<< y <<endl;
 				// cek apakah cell memiliki tipe yang sesuai
 				// cout<<matriksCell.getCell(x,y).getTipe() <<" ";
 				// cout<< cages[i].getTipeHabitat()<<endl;
-				if(matriksCell.getCell(x,y).getTipe() == cages[i].getTipeHabitat()){
+				if((matriksCell.getCell(x,y).getTipe()).equals(cages[i].getTipeHabitat())){
 					cages[i].addCagePosition(matriksCell.getCell(x,y));
+					System.out.println(matriksCell.getCell(x,y).getTipe());
+				
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getX()<<" ";
 					// cout << cages[i].getCagePosition(cages[i].getNArea()-1).getY()<<endl;
 				}
@@ -133,6 +134,7 @@ public class VirtualZoo {
 			// cout << endl;
 			m = m + data.getNCageArea(i);
 		}
+		printVirtualZoo();
 
 		//3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
 		int jumlahAnimal;
@@ -146,7 +148,7 @@ public class VirtualZoo {
 			// cout << "n animal:" << jumlahAnimal <<endl;
 			for(int j=0; j<jumlahAnimal; j++){
 				//~ cout <<"yang udah ada:"<< cages[i].getNAnimal() <<endl;
-				if (cages[i].getTipeHabitat()=="land"){
+				if (cages[i].getTipeHabitat().equals("land")){
 					//random posisi awal, pastikan masih kosong 
 					//random dari listOfPosisiCage
 					int nr;
@@ -186,7 +188,7 @@ public class VirtualZoo {
 					// cout << d<< " ";
 					// cout <<cages[i].getAnimal(d).getX()<<" land ";
 					// cout <<cages[i].getAnimal(d).getY()<<endl;
-				}else if (cages[i].getTipeHabitat()=="water"){
+				}else if (cages[i].getTipeHabitat().equals("water")){
 					
 					//random posisi awal, pastikan masih kosong
 					//random dari listOfPosisiCage
@@ -221,7 +223,7 @@ public class VirtualZoo {
 					// // cout << d<< " ";
 					// cout <<cages[i].getAnimal(d).getX()<<" water ";
 					// cout <<cages[i].getAnimal(d).getY()<<endl;
-				}else if (cages[i].getTipeHabitat()=="air"){
+				}else if (cages[i].getTipeHabitat().equals("air")){
 					//random posisi awal, pastikan masih kosong
 					//random dari listOfPosisiCage
 					int nr;
