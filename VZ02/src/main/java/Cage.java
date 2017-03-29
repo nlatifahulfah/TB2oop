@@ -91,21 +91,6 @@ public class Cage {
 	}
 
 	/**
-	* Setter animals.
-	* Menambahkan Animal dalam cage jika masih bisa ditambahkan.
-	* Harus dipastikan jumlah Animal tidak melebihi kapasitasnya
-	* 
-	* @param anim Animal yang akan ditambahkan
-	*/
-	public void addAnimal(Animal anim) {
-		if (nAnimal < getMaxAnimal()) {
-			animals[nAnimal] = anim;
-			nAnimal++;
-			
-		}
-	}
-
-	/**
 	* Getter Animal. Mendapatkan Animal pada indeks i (animals[i]).
 	* 
 	* @param i Index Animal yang akan diambil
@@ -136,19 +121,6 @@ public class Cage {
 			total_makanan = total_makanan + animals[i].getBobot();
 		}
 		return total_makanan;
-	}
-
-	/**
-	* Setter listOfCagePosition.
-	* Menambahkan posisi cell tempat didirikannya cage.
-	*
-	* @param position Posisi cage
-	*/
-	public void addCagePosition(Cell position) {
-		if (nArea < getCageArea()) {
-			listOfCagePosition[nArea] = position;	
-			nArea++;
-		}
 	}
 
 	/**

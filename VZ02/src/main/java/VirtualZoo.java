@@ -40,9 +40,7 @@ public class VirtualZoo {
 
     // 1. Inisialisasi Virtual Zoo
     matriksCell = new MatrixCell(data.getNBrs(), data.getNKol());
-    // cout << matriksCell.getNBrs() << " ";
-    // cout << matriksCell.getNKol() << endl;
-    //System.out.println(data.getNBrs());
+    
     int max = (matriksCell.getNBrs() + matriksCell.getNKol())*2;
     listEntrance = new Cell[max];
     nEntrance = 0;
@@ -64,8 +62,6 @@ public class VirtualZoo {
             k++;
         }
 
-        //System.out.println(data.getCellType(k));
-        //System.out.println(i + " " + j);
         //inisialisasi
         if (data.getCellType(k).equals("airhabitat")){
           //System.out.println("masuk ah");
@@ -92,12 +88,9 @@ public class VirtualZoo {
           nExit++;
           nRoad++;
         } else System.out.println("ga keset");
-        //System.out.print(matriksCell.getCell(i,j).getTipe());
-        
-        // cout << matriksCell.getCell(i,j).render();
+       
       }
-      //System.out.println();
-      // cout <<endl;
+
     }
 
 
@@ -125,8 +118,6 @@ public class VirtualZoo {
         // cout<<matriksCell.getCell(x,y).getTipe() <<" ";
         // cout<< cages[i].getTipeHabitat()<<endl;
 
-        if(matriksCell.getCell(x,y).getTipe().equals(cages[i].getTipeHabitat())){
-
         if((matriksCell.getCell(x,y).getTipe()).equals(cages[i].getTipeHabitat())){
 
           cages[i].addCagePosition(matriksCell.getCell(x,y));
@@ -144,7 +135,7 @@ public class VirtualZoo {
 
     //3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
     int jumlahAnimal;
-    for(int i=0; i< nCage; i++){
+    for(int i=0; i< nCage; i++) {
       System.out.println(cages[i].getMaxAnimal());
       // cout << "max animal:" <<cages[i].getMaxAnimal() <<endl;
       jumlahAnimal = data.getNAnimal(i);
@@ -152,7 +143,7 @@ public class VirtualZoo {
         jumlahAnimal = cages[i].getMaxAnimal();
       }
       // cout << "n animal:" << jumlahAnimal <<endl;
-      for(int j=0; j<jumlahAnimal; j++){
+      for(int j=0; j<jumlahAnimal; j++) {
         //~ cout <<"yang udah ada:"<< cages[i].getNAnimal() <<endl;
         if (cages[i].getTipeHabitat().equals("land")){
           //random posisi awal, pastikan masih kosong 
@@ -343,7 +334,7 @@ public class VirtualZoo {
   * @param kanan Indeks batas kanan Virtual Zoo
   * @param bawah Indeks batas bawah Virtual Zoo
   * @return true jika masih dalam jangkauan,
-        false jika diluar jangkauan
+  *      false jika diluar jangkauan
   */
   public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
     int xMax = matriksCell.getNBrs();
@@ -680,7 +671,5 @@ public class VirtualZoo {
       interact();
     }while (!isEndOfTour());
   }
-
-
 }
 
