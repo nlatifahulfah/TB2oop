@@ -54,6 +54,7 @@ public class FileReader {
 	* @param fileName Nama file eksternal yang akan dibaca
 	*/
 	public FileReader(String fileName) {
+
 		System.out.println("making filereader");
 		//URL path = ClassLoader.getSystemResource(fileName);
 		//file = new File(path.toString());
@@ -64,6 +65,7 @@ public class FileReader {
 			System.out.println("file loaded");
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
+
 		}
 	}
 
@@ -75,18 +77,19 @@ public class FileReader {
 		nBrs = sc.nextInt();
 		nKol = sc.nextInt();
 		sc.nextLine();
-		// cout<<nBrs<<" "<< nKol<<endl;
 
 		nCellType = sc.nextInt();
 		sc.nextLine();
+
 		listCellType = new String[nCellType];
 		listCellSimbol = new char[nCellType];
+
 		for(int i=0; i<nCellType; i++) {
-			listCellSimbol[i] = sc.next().charAt(0);
-			listCellType[i] = sc.next();
+			listCellSimbol.add(i, sc.next().charAt(0));
+			listCellType.add(i, sc.next());
 			sc.nextLine();
-			// cout << listCellSimbol[i] << " " << listCellType[i] <<endl;
 		}
+
 
 		maps = new char[nBrs][nKol];
 		for(int i=0; i<nBrs; i++) {
@@ -99,18 +102,19 @@ public class FileReader {
 				System.out.println();
 				// cout << maps[i][j];
 			//}
+
 			sc.nextLine();
-			// cout << endl;
 		}
 
 		nCage = sc.nextInt();
+
 		listCageSimbol = new char[nCage];
 		listCagetype = new String[nCage];
-		listNCageArea = new int[nCage];
+
 		for(int i=0; i<nCage; i++){
-			listCageSimbol[i] = sc.next().charAt(0);
-			listCagetype[i] = sc.next();
-			listNCageArea[i] = sc.nextInt();
+			listCageSimbol.add(sc.next().charAt(0));
+			listCagetype.add(sc.next());
+			listNCageArea.add(sc.nextInt());
 			sc.nextLine();
 			//System.out.println(listCageSimbol[i]);
 			//System.out.println(listCagetype[i]);
@@ -120,19 +124,20 @@ public class FileReader {
 		// cout <<"sum area = "<< getSumCageArea() << endl;
 		listNAnimal = new int[nCage];
 		listPos = new int[getSumCageArea()][2];
+
 		
 		int c=0;
 		int d=0;
+
 		for(int i=0; i<nCage; i++) {
-			for(int j=0; j<listNCageArea[i]; j++) {
-				listPos[c][0] = sc.nextInt();
-				listPos[c][1] = sc.nextInt();
+			for(int j=0; j<getNCageArea(i); j++) {
+				listPos.add(new ArrayList<Integer>(2));
+				listPos.get(c).add(sc.nextInt());
+				listPos.get(c).add(sc.nextInt());
 				sc.nextLine();
-				// cout << listPos[c][0] <<" "<< listPos[c][1] << endl;
 				c++;
 			}
-			listNAnimal[d] = sc.nextInt();
-			// cout << "nAnimal:" <<listNAnimal[d] <<endl;
+			listNAnimal.add(d,sc.nextInt());
 			d++;
 		}
 
@@ -245,7 +250,9 @@ public class FileReader {
 	* @return listNCageArea[i]
 	*/
 	public int getNCageArea(int i) {
+
 		return listNAnimal[i];
+
 	}
 
 	/**

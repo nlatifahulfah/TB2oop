@@ -26,16 +26,6 @@ public class View {
 	}
 
 	/**
-	* @brief Mendapatkan nilai val[_x][_y]
-	* @param _x Index baris nilai yang ingin didapatkan
-	* @param _y Index kolom nilai yang ingin didapatkan
-	* @return val[_x][_y]
-	*/
-	public char getVal(int x, int y) {
-		return val[x][y];
-	}
-	
-	/**
 	* @brief Mengubah nilai val[i][j] menjadi c
 	* @param i Index baris nilai yang ingin diubah
 	* @param j Index kolom nilai yang ingin diubah
@@ -45,10 +35,20 @@ public class View {
 	}
 
 	/**
+	* @brief Mendapatkan nilai val[_x][_y]
+	* @param _x Index baris nilai yang ingin didapatkan
+	* @param _y Index kolom nilai yang ingin didapatkan
+	* @return val[_x][_y]
+	*/
+	public char getVal(int x, int y) {
+		return val[x][y];
+	}
+
+	/**
 	* @brief Mendapatkan nilai baris
 	* @return nBrs
 	*/
-	public int getnBrs() {
+	public int getNBrs() {
 		return nBrs;
 	}
 	
@@ -56,7 +56,7 @@ public class View {
 	* @brief Mendapatkan nilai kolom
 	* @return nKol
 	*/
-	public int getnKol() {
+	public int getNKol() {
 		return nKol;
 	}
 	
