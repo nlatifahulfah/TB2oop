@@ -36,7 +36,7 @@ public class VirtualZoo {
     
     FileReader data = new FileReader(inputFile);
     
-    data.read();  
+    // data.read();  
 
     // 1. Inisialisasi Virtual Zoo
     matriksCell = new MatrixCell(data.getNBrs(), data.getNKol());
@@ -131,7 +131,7 @@ public class VirtualZoo {
       // cout << endl;
       m = m + data.getNCageArea(i);
     }
-    printVirtualZoo();
+    // printVirtualZoo();
 
     //3. Inisialcisasi objek2 binatang dan meletakkannya di Cage yang sesuai
     int jumlahAnimal;

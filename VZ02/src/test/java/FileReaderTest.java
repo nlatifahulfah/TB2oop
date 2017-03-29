@@ -13,7 +13,7 @@ public class FileReaderTest {
   public void test_getNBrs() {
     System.out.println("Test getNBrs");
    	FileReader f = new FileReader("input.txt");
-
+    // System.out.println(f.getNBrs());
     assertTrue(f.getNBrs()==16);
   }
 

@@ -55,14 +55,15 @@ public class FileReader {
 	*/
 	public FileReader(String fileName) {
 
-		System.out.println("making filereader");
+		// System.out.println("making filereader");
 		//URL path = ClassLoader.getSystemResource(fileName);
 		//file = new File(path.toString());
 		file = new File(fileName);
 		try {
-			//read();
 			sc = new Scanner(file);
-			System.out.println("file loaded");
+			read();
+			
+			// System.out.println("file loaded");
 		} catch (FileNotFoundException e) {
 			System.out.println(e);
 
@@ -73,7 +74,7 @@ public class FileReader {
 	* Membaca seluruh file 
 	*/
 	public void read() {
-		System.out.println("reading file");
+		// System.out.println("reading file");
 		nBrs = sc.nextInt();
 		nKol = sc.nextInt();
 		sc.nextLine();
@@ -97,8 +98,9 @@ public class FileReader {
 				char[] c = s.toCharArray();
 				maps[i] = c;
 				
-				for (int j=0;j<nKol;j++) System.out.print(maps[i][j]);
-				System.out.println();
+				// for (int j=0;j<nKol;j++) 
+					// System.out.print(maps[i][j]);
+				// System.out.println();
 				// cout << maps[i][j];
 			//}
 			sc.nextLine();
@@ -114,9 +116,9 @@ public class FileReader {
 			listCagetype[i] = sc.next();
 			listNCageArea[i] = sc.nextInt();
 			sc.nextLine();
-			//System.out.println(listCageSimbol[i]);
-			//System.out.println(listCagetype[i]);
-			//System.out.println(listNCageArea[i]);
+			// System.out.println(listCageSimbol[i]);
+			// System.out.println(listCagetype[i]);
+			// System.out.println(listNCageArea[i]);
 		}
 
 		// cout <<"sum area = "<< getSumCageArea() << endl;
@@ -249,7 +251,7 @@ public class FileReader {
 	*/
 	public int getNCageArea(int i) {
 
-		return listNAnimal[i];
+		return listNCageArea[i];
 
 	}
 
