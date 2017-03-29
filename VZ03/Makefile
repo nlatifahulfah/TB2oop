@@ -15,44 +15,94 @@ TARGET = bin/
 .SUFFIXES : .class .java
 
 all: 
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Driver.java
 
-Animal: Renderable
+Animal: 
 	$(MKBIN)
 	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Animal.java
 
-FlyingAnimal: 
+Cage: Animal Cell
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)FlyingAnimal.java 
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Cage.java
 
-Flyingfish: Animal FlyingAnimal WaterAnimal
+FileReader: 
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Flyingfish.java
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)FileReader.java
 
-Karnivora: 
+Cell: 
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Karnivora.java
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Cell.java
 
-Renderable: 
+MatrixCell: Cell
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Renderable.java
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)MatrixCell.java
 
-WaterAnimal: 
+View: 
 	$(MKBIN)
-	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)WaterAnimal.java
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)View.java
 
-test:
-	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)/FlyingfishTest.java 
+Visitor: 
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)Visitor.java
+
+VirtualZoo: MatrixCell View Visitor Cell Cage
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(MAINSRC)VirtualZoo.java
+
+AnimalTest: Animal
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)AnimalTest.java
+
+CageTest: Cage
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)CageTest.java
+
+CellTest: Cell
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)CellTest.java
+
+VisitorTest: Visitor
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)VisitorTest.java
+
+ViewTest: View
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)ViewTest.java
+
+MatrixCellTest: MatrixCell
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)MatrixCellTest.java
+
+FileReaderTest: FileReader
+	$(MKBIN)
+	$(JAVAC) $(FLAGS) $(CP) $(TESTSRC)FileReaderTest.java
+
+testAnimal:
+	$(JVM) $(CP) org.junit.runner.JUnitCore AnimalTest
+
+testCage:
+	$(JVM) $(CP) org.junit.runner.JUnitCore CageTest
+
+testCell:
+	$(JVM) $(CP) org.junit.runner.JUnitCore CellTest
+
+testVisitor:
+	$(JVM) $(CP) org.junit.runner.JUnitCore VisitorTest
+
+testView:
+	$(JVM) $(CP) org.junit.runner.JUnitCore ViewTest
+
+testMatrixCell:
+	$(JVM) $(CP) org.junit.runner.JUnitCore MatrixCellTest
+
+testFileReader:
+	$(JVM) $(CP) org.junit.runner.JUnitCore FileReaderTest
 
 clean:
 	rm -rf $(TARGET)
 
 run:
-	$(JVM) $(CP) $(MAIN)
-
-run_test: 
-	$(JVM) $(CP) $(MAINTEST)
-
-testFF:
-	$(JVM) $(CP) org.junit.runner.JUnitCore FlyingfishTest
+	$(JVM) $(CP) Driver
 
 .PHONY: all test clean run run_test

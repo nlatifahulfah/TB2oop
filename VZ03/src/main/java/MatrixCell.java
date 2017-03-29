@@ -19,7 +19,7 @@ public class MatrixCell {
 	public MatrixCell(int brs, int kol) {
 		nBrs = brs;
 		nKol = kol;
-		Cell matrix[][] = new Cell [nBrs][nKol];
+		matrix = new Cell [nBrs][nKol];
 	}
 
 	/**

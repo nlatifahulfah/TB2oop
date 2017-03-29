@@ -540,6 +540,7 @@ public class VirtualZoo {
       // cout << "masuk kanan" << endl;
       
         if (!isVisited(matriksCell.getCell(x,y))) {
+		  //System.out.println("masuk kanan");
           cellAvailable[nAvailable] = matriksCell.getCell(x,y);
           nAvailable++;
         }
@@ -554,6 +555,7 @@ public class VirtualZoo {
       // cout << "masuk atas" << endl;
       if (matriksCell.getCell(x,y).getTipe().equals("road") || matriksCell.getCell(x,y).getTipe().equals("exit")) {
         if (!isVisited(matriksCell.getCell(x,y))) {
+          //System.out.println("masuk atas");
           cellAvailable[nAvailable] = matriksCell.getCell(x,y);
           nAvailable++;
         }
@@ -568,6 +570,7 @@ public class VirtualZoo {
       // cout << "masuk kiri" << endl;
       if (matriksCell.getCell(x,y).getTipe().equals("road") || matriksCell.getCell(x,y).getTipe().equals("exit")) {
         if (!isVisited(matriksCell.getCell(x,y))) {
+          //System.out.println("masuk kiri");
           cellAvailable[nAvailable] = matriksCell.getCell(x,y);
           nAvailable++;
         }
@@ -582,6 +585,7 @@ public class VirtualZoo {
       // cout << "masuk bawah" << endl;
       if (matriksCell.getCell(x,y).getTipe().equals("road") || matriksCell.getCell(x,y).getTipe().equals("exit")) {
         if (!isVisited(matriksCell.getCell(x,y))) {
+          //System.out.println("masuk bawah");
           cellAvailable[nAvailable] = matriksCell.getCell(x,y);
           nAvailable++;
         }
@@ -591,6 +595,7 @@ public class VirtualZoo {
 
     if (nAvailable == 0) {
       // cout << "tidak ada jalan" << endl;
+      System.out.println("tidak ada jalan");
       currentVisited--;
       int xNext = listVisited[currentVisited].getX();
       int yNext = listVisited[currentVisited].getY();
@@ -598,6 +603,7 @@ public class VirtualZoo {
     } else {
       // cout << "ada jalan " << nAvailable << endl;
       //int rn = rand() % nAvailable;
+      System.out.println(nAvailable);
       int rn = ThreadLocalRandom.current().nextInt(nAvailable);
       int xNext = cellAvailable[rn].getX();
       int yNext = cellAvailable[rn].getY();
