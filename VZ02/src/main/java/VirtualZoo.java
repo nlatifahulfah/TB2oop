@@ -253,7 +253,7 @@ public class VirtualZoo {
   /**
   * Menambahkan simbol2 dari Cage ke Maps
   */  
-  public void addCagetoMaps() {
+  public void addCageToMaps() {
   int x,y;
   for(int i=0; i<nCage; i++) {
     for(int j=0; j<cages[i].getNArea(); j++) {
@@ -303,7 +303,7 @@ public class VirtualZoo {
   * @return true jika masih dalam jangkauan,
   *     false jika diluar jangkauan
   */
-  public boolean isInRage(int kiri,int atas,int kanan,int bawah) {
+  public boolean isInRange(int kiri,int atas,int kanan,int bawah) {
     int xMax = matriksCell.getNBrs();
     int yMax = matriksCell.getNKol();
     if (atas>=0 && kiri>=0 && bawah<=xMax && kanan<=yMax) {
@@ -321,7 +321,7 @@ public class VirtualZoo {
   * @return true jika masih dalam jangkauan,
   *     false jika diluar jangkauan
   */
-  public boolean isInRage(int x, int y) {
+  public boolean isInRange(int x, int y) {
     int xMax = matriksCell.getNBrs();
     int yMax = matriksCell.getNKol();
     if (x>=0 && y>=0 && x<xMax && y<yMax) {
